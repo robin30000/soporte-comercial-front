@@ -55,7 +55,7 @@ export class ConsultaPedidoComponent implements OnInit {
   buscar(){
     let pedido=this.form.get('Pedido')?.value;
     let cedula=this.form.get('Cedula')?.value;
-
+    this.loading=true;
     if(pedido == ''){
       pedido= 'vacio';
     }
@@ -77,7 +77,7 @@ export class ConsultaPedidoComponent implements OnInit {
     this.consulta.consulta(pedido,cedula).subscribe(res=>{
       if(res==null ||res==''){
         this.aparece=false
-
+        this.loading=false;
         if(this.validar==false){
           Swal.fire({
             icon: 'info',
@@ -87,7 +87,7 @@ export class ConsultaPedidoComponent implements OnInit {
         }
 
       }else{
-
+        this.loading=false;
         if(res[0].EstadoPedido=='-1'){
           this.Dispatch='El pedido no tiene la informacion completa en Click';
         
