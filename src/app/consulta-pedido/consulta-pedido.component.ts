@@ -1,33 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaService } from '../services/consulta.service';
-import{ MatTableDataSource } from '@angular/material/table';
-import { map } from 'rxjs';
 import Swal from 'sweetalert2';
 
-export interface Tecnico{
-  CedulaTecnico : string
-  NombreTecnico:string
-}
-let Tecnicos:Tecnico[]
-export interface Cliente{
-  CedulaCliente:string
-  NombreCliente:string
-  DireccionCliente:string
-}
-let Clientes:Cliente[]
-export interface Pedido{
-  Estado:string
-  Pedido:string
-  FechaCita:string
-  HoraCita:string
-  UEN:string
-  Segmento:string
-  Productos:string
-  Tecnologias:string
-  MicroZona:string
-}
-let Pedidos:Pedido[]
 
 @Component({
   selector: 'app-consulta-pedido',
@@ -53,6 +28,7 @@ export class ConsultaPedidoComponent implements OnInit {
   ngOnInit(): void {
   }
   buscar(){
+    this.aparece=false;
     let pedido=this.form.get('Pedido')?.value;
     let cedula=this.form.get('Cedula')?.value;
     this.loading=true;
@@ -64,6 +40,7 @@ export class ConsultaPedidoComponent implements OnInit {
     }
     
     if(cedula=='vacio'&& pedido=='vacio'){
+      this.loading=false;
       this.validar=true;
       Swal.fire({
         icon: 'error',
