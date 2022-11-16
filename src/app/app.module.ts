@@ -21,13 +21,15 @@ import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {HttpClientModule} from '@angular/common/http';
+import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ConsultaPedidoComponent
+    ConsultaPedidoComponent,
+    ConsultaEquiposInstaladosComponent
   ],
   imports: [
     FormsModule,

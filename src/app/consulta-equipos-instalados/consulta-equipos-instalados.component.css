@@ -1,0 +1,35 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.ancho{
+    width: 80%;
+}
+
+.button{
+    height: 50px;
+}
+
+.spinner{
+    margin: 0 auto;
+}
+
+button{
+    background-color: #102b58;
+    color: white;
+    cursor: pointer;
+}
+
+mat-card-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
