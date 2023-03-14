@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaService } from '../services/consulta.service';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class ConsultaPedidoComponent implements OnInit {
   Dispatch!: string;
   validar=false;
   public datos:Array<any>=[]
-  constructor(private fb: FormBuilder, private consulta:ConsultaService) { 
+  Mensaje: any;
+
+  constructor(private fb: FormBuilder, private consulta:ConsultaService,private router:Router,private alerts: MatSnackBar) { 
     this.form=this.fb.group({
       'Pedido':[''],
       'Cedula':['']
@@ -26,6 +30,10 @@ export class ConsultaPedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('user')==null){
+      localStorage.clear();
+      this.router.navigate(['login'])
+    }
   }
   buscar(){
     this.aparece=false;
@@ -52,6 +60,7 @@ export class ConsultaPedidoComponent implements OnInit {
     }
 
     this.consulta.consultaVisitasTerreno(pedido,cedula).subscribe(res=>{
+      console.log(res);
       if(res==null ||res==''){
         this.aparece=false
         this.loading=false;
@@ -66,8 +75,8 @@ export class ConsultaPedidoComponent implements OnInit {
       }else{
         this.loading=false;
         if(res[0].EstadoPedido=='-1'){
-          this.Dispatch='El pedido no tiene la informacion completa en Click';
-        
+          this.Dispatch='*Pedido amarillo';
+          this.Mensaje = true;
         }else{
           this.Dispatch='Pedido OK';
         }

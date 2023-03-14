@@ -3,10 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
 import { ConsultaPedidoComponent } from './consulta-pedido/consulta-pedido.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -18,10 +23,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
-import {HttpClientModule} from '@angular/common/http';
-import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
+
 
 
 @NgModule({
@@ -29,17 +32,15 @@ import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalado
     AppComponent,
     HeaderComponent,
     ConsultaPedidoComponent,
-    ConsultaEquiposInstaladosComponent
+    ConsultaEquiposInstaladosComponent,
+    LoginComponent,
   ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BrowserModule,
     AppRoutingModule,
-    MatDialogModule,
+    HttpClientModule,MatDialogModule,
     MatButtonModule,
     MatCardModule,
     MatSliderModule,
@@ -53,9 +54,14 @@ import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalado
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
-    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    
+
   ],
-  providers: [],
+  providers: [
+    {provide:LocationStrategy,useClass:HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ConsultaService } from '../services/consulta.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-consulta-equipos-instalados',
@@ -21,7 +22,7 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
   dataTralado: any[] = []
   dataRepair: any[] = []
   dataInstall: any[] = []
-  constructor(private fb: FormBuilder, private consulta: ConsultaService) {
+  constructor(private fb: FormBuilder, private consulta: ConsultaService,private router:Router) {
     this.form = this.fb.group({
       'Pedido': [''],
     })
@@ -30,6 +31,10 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('user')==null){
+      localStorage.clear();
+      this.router.navigate(['login'])
+    }
   }
 
   buscar() {

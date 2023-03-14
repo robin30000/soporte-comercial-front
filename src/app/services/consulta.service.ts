@@ -15,11 +15,11 @@ export class ConsultaService {
     }
   }
 
-  consultaVisitasTerreno(pedido:string,cedula:string): Observable<any>{
-    return this.http.get<any>(`http://localhost:8080/visitasTerreno/api/public/visitasTerreno/${pedido}/${cedula}`);
+  consultaVisitasTerreno(pedido:string, cedula:string): Observable<any>{
+    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/visitas-terreno/${pedido}/${cedula}`);
   }
 
   consultaEquiposInstalados(pedido:string): Observable<any>{
-    return this.http.get<any>(`http://localhost:8080/visitasTerreno/api/public/equiposInstalados/${pedido}`);
+    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/equipos/${pedido}`);
   }
 }
