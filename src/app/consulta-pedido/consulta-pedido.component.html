@@ -23,14 +23,14 @@
     <mat-tab label="Detalles del técnico">
       <table class="table">
         <tbody>
-          <tr *ngFor="let dato of datos">
+          <tr >
             <th scope="row">Cedula del Tecnico</th>
-            <td>{{dato.CedulaTecnico}}</td>
+            <td>{{datos[0].CedulaTecnico}}</td>
 
           </tr>
-          <tr *ngFor="let dato of datos">
+          <tr >
             <th scope="row">Nombre del Tecnico</th>
-            <td>{{dato.NombreTecnico}}</td>
+            <td>{{datos[0].NombreTecnico}}</td>
           </tr>
         </tbody>
       </table>
@@ -39,18 +39,18 @@
 
       <table class="table">
         <tbody>
-          <tr *ngFor="let dato of datos">
+          <tr >
             <th scope="row">Cedula del cliente</th>
-            <td>{{dato.CedulaCliente}}</td>
+            <td>{{datos[0].CedulaCliente}}</td>
 
           </tr>
-          <tr *ngFor="let dato of datos">
+          <tr >
             <th scope="row">Nombre del cliente</th>
-            <td>{{dato.NombreCliente}}</td>
+            <td>{{datos[0].NombreCliente}}</td>
           </tr>
-          <tr *ngFor="let dato of datos">
+          <tr >
             <th scope="row">Direccion del cliente</th>
-            <td>{{dato.DireccionCliente}}</td>
+            <td>{{datos[0].DireccionCliente}}</td>
           </tr>
         </tbody>
       </table>

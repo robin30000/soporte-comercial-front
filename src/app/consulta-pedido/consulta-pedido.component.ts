@@ -21,6 +21,7 @@ export class ConsultaPedidoComponent implements OnInit {
   validar=false;
   public datos:Array<any>=[]
   Mensaje: any;
+  primarydate: any;
 
   constructor(private fb: FormBuilder, private consulta:ConsultaService,private router:Router,private alerts: MatSnackBar) { 
     this.form=this.fb.group({
@@ -74,13 +75,15 @@ export class ConsultaPedidoComponent implements OnInit {
 
       }else{
         this.loading=false;
-        if(res[0].EstadoPedido=='-1'){
-          this.Dispatch='*Pedido amarillo';
-          this.Mensaje = true;
-        }else{
-          this.Dispatch='Pedido OK';
+        for(let i=0; i<res.length;i++ ){
+          if(res[i].EstadoPedido=='-1'){
+            this.Dispatch='*Pedido amarillo';
+            this.Mensaje = true;
+          }else{
+            this.Dispatch='Pedido OK';
+          }
+          this.aparece=true;
         }
-        this.aparece=true;
         this.datos=res;
       }
     
