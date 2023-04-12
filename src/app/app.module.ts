@@ -24,6 +24,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import { VentasComponent } from './ventas/ventas.component';
 
 
 
@@ -34,6 +35,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ConsultaPedidoComponent,
     ConsultaEquiposInstaladosComponent,
     LoginComponent,
+    VentasComponent,
   ],
   imports: [
     BrowserModule,

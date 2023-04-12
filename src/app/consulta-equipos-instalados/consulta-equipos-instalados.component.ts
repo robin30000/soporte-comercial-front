@@ -22,6 +22,7 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
   dataTralado: any[] = []
   dataRepair: any[] = []
   dataInstall: any[] = []
+  perfil: any;
   constructor(private fb: FormBuilder, private consulta: ConsultaService,private router:Router) {
     this.form = this.fb.group({
       'Pedido': [''],
@@ -34,6 +35,11 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
     if(localStorage.getItem('user')==null){
       localStorage.clear();
       this.router.navigate(['login'])
+    }
+
+    this.perfil  = localStorage.getItem('perfil')
+    if(this.perfil != 1 && this.perfil == 2){
+      this.router.navigate(['Ventas'])
     }
   }
 

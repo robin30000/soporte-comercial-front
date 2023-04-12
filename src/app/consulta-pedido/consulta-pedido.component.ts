@@ -22,6 +22,7 @@ export class ConsultaPedidoComponent implements OnInit {
   public datos:Array<any>=[]
   Mensaje: any;
   primarydate: any;
+  perfil:any
 
   constructor(private fb: FormBuilder, private consulta:ConsultaService,private router:Router,private alerts: MatSnackBar) { 
     this.form=this.fb.group({
@@ -34,6 +35,12 @@ export class ConsultaPedidoComponent implements OnInit {
     if(localStorage.getItem('user')==null){
       localStorage.clear();
       this.router.navigate(['login'])
+    }
+
+    this.perfil  = localStorage.getItem('perfil')
+
+    if(this.perfil != 1 && this.perfil == 2){
+      this.router.navigate(['Ventas'])
     }
   }
   buscar(){

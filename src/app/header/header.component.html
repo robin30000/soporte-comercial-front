@@ -3,8 +3,9 @@
         <img src="assets\img\TigoLogo.png">
     </div>
 
-    <a mat-button  routerLink="/ConsultaPedido" >Visitas Terreno</a>
-    <a mat-button  routerLink="/ConsultaEquiposInstalados" >Consulta equipos instalados</a>
+    <a *ngIf="perfil== 1" mat-button  routerLink="/ConsultaPedido" >Visitas Terreno</a>
+    <a *ngIf="perfil== 1" mat-button  routerLink="/ConsultaEquiposInstalados" >Consulta equipos instalados</a> 
+    <a *ngIf="perfil== 2" mat-button  routerLink="/Ventas" >Ventas</a> 
 
     <a mat-button (click)="CerrarSesion()">Cerrar sesión</a>
 </header>

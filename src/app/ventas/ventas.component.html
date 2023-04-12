@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="body">
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="buscar()">
+      <h1>Consultar información del cliente</h1>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Pedido UNE</mat-label>
+        <input matInput autocomplete="off" formControlName="Pedido">
+      </mat-form-field>
+      <br>
+      <button type="submit" class="ancho button">Buscar</button>
+    </form>
+  </div>
+</div>
+<mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+<mat-card-content>
+  <mat-tab-group *ngIf="aparece">
+    <mat-tab label="Pedido">
+      <table class="table">
+        <tbody>
+          <tr >
+            <th scope="row">Nombre del cliente</th>
+            <td>{{datos[0].NombreCliente}}</td>
+
+          </tr>
+          <tr >
+            <th scope="row">Estado</th>
+            <td>{{datos[0].Name}}</td>
+          </tr>
+          <tr >
+            <th scope="row">Fecha</th>
+            <td>{{datos[0].FechaCita}}</td>
+          </tr>
+          <tr >
+            <th scope="row">Hora - Franja</th>
+            <td>{{datos[0].HoraCita}}</td>
+          </tr>
+          <tr >
+            <th scope="row">Guión</th>
+            <td>{{Guion}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card-content>

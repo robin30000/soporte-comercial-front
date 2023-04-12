@@ -53,10 +53,17 @@ export class LoginComponent implements OnInit {
   
       this.authService.login(login).subscribe(res => {
 
-        console.log(res[1]);
+        let perfil= res[2][0]['Perfil'];
         if(res[1]==200){
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ConsultaPedido']);
+          localStorage.setItem('perfil', perfil)
+          if(perfil == 1){
+            localStorage.setItem('user', this.loginForm.value.username)
+            this.router.navigate(['ConsultaPedido']);
+          }else if(perfil==2){
+            localStorage.setItem('user', this.loginForm.value.username)
+            this.router.navigate(['Ventas']);
+          }
+
         }else if(res[1]==400){
           this.alerts.open(res[0],'Cerrar',{duration:4000})
         }

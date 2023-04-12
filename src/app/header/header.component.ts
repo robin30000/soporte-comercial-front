@@ -6,10 +6,12 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  perfil:any
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    this.perfil  = localStorage.getItem('perfil')
+    
   }
 
   CerrarSesion(){

@@ -20,6 +20,7 @@ export class AuthService {
   }
   login(user: Object,): Observable<any>{
     let data = {method:'Login',data:user}
-    return this.http.post<any>( `http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+    //return this.http.post<any>( `http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+    return this.http.post<any>( `http://localhost:8080/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
   }
 }
