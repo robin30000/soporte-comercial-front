@@ -14,6 +14,8 @@ export class VentasComponent implements OnInit {
 
   loading = false;
   aparece = false;
+  observe = false;
+  Observacion !:string;
   form: FormGroup;
   Guion!: string;
   validar = false;
@@ -77,6 +79,8 @@ export class VentasComponent implements OnInit {
         
         this.loading = false;
         this.aparece = true;
+        
+        
         let date = new Date()
         let fecha = date.toISOString().split('T')[0]
         
@@ -89,16 +93,24 @@ export class VentasComponent implements OnInit {
         }
 
         if (Estado == 'Incompleto') {
-
+           this.observe = true;
           this.consulta.consultaIncompleto(pedido).subscribe(res1 => {
+            
             let IncompleteCode = res1[0]['IncompleteCode']
             let concepto = res1[0]['Concepto']
             console.log(res1);
+            if(res1[0]['ObsTecnico'] == ''|| res1[0]['ObsTecnico'] == null){
+             this.Observacion= "Para este pedido el tecnico no registro observaciones"
+            }else{
+              this.Observacion = res1[0]['ObsTecnico']
+            }
             
             if (IncompleteCode == 'S-Aprovisionamiento-OT-C01' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C01' || IncompleteCode == 'S-Aprovisionamiento-OT-C02' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C02' || IncompleteCode == 'S-Aprovisionamiento-OT-C06' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C06' || IncompleteCode == 'S-Aprovisionamiento-OT-C07' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C07' || IncompleteCode == 'S-Aprovisionamiento-OT-C08' || IncompleteCode == 'S-Aprovisionamiento-OT-C12' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C12' || IncompleteCode == 'S-Aprovisionamiento-OT-C14' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C14' || IncompleteCode == 'S-Aprovisionamiento-OT-C17' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C17' || IncompleteCode == 'S-Aprovisionamiento-OT-C20' || IncompleteCode == 'POE-Aprovisionamiento BSC-OT-C20') {
               res[0]['Name'] = "Incompleto gestionable"
               this.Guion = "Lastimosamente no fue posible realizar el 100% de la instalación del pedido " + pedido + ", el cual quedo en concepto " + concepto + ", es necesario que nuevamente contactes al cliente y realizarle la gestión comercial."
-            } else {
+            } else if(IncompleteCode == '' || IncompleteCode == null){
+                this.Guion = "Se presento un error en Click, este pedido debe ser gestionado nuevamente"
+            }else{
               this.Guion = "Lastimosamente no hemos logrado realizar el 100% de la instalación, el pedido " + pedido + " se encuentra pendiente y estamos realizando la gestión necesaria para cumplir la orden."
             }
           }
@@ -137,6 +149,8 @@ export class VentasComponent implements OnInit {
         else {
           this.Guion = "Estado desconocido"
         }
+
+
         this.datos = res;
       }
 
