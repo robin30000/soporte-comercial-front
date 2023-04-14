@@ -22,4 +22,8 @@ export class ConsultaService {
   consultaEquiposInstalados(pedido:string): Observable<any>{
     return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/equipos/${pedido}`);
   }
+
+  consultaIncompleto(pedido:string): Observable<any>{
+    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/incompleto/${pedido}`);
+  }
 }
