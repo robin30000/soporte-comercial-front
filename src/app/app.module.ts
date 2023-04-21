@@ -24,7 +24,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 import { VentasComponent } from './ventas/ventas.component';
+import { VentasInstaleTiendasComponent } from './components/ventas-instale-tiendas/ventas-instale-tiendas.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -36,6 +44,7 @@ import { VentasComponent } from './ventas/ventas.component';
     ConsultaEquiposInstaladosComponent,
     LoginComponent,
     VentasComponent,
+    VentasInstaleTiendasComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +67,12 @@ import { VentasComponent } from './ventas/ventas.component';
     MatTabsModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatTooltipModule
 
   ],
   providers: [

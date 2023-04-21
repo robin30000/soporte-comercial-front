@@ -1,0 +1,34 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.ancho {
+    width: 90%;
+}
+
+.menor{
+    width: 80%;
+}
+
+.start{
+    margin-right: auto;
+    background-color: #102b58;
+}
+
+.margin {
+    margin-right: 30px;
+}
+
+.full{
+    width: 95%;
+}
+
+.fullM{
+    width: 90%;
+}
+
+
+
+
+
+

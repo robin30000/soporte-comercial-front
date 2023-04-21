@@ -1,11 +1,41 @@
-<header>
-    <div class="logo">
-        <img src="assets\img\TigoLogo.png">
-    </div>
+<mat-toolbar color="primary" *ngIf="desired_columns">
+  <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
+  <span class="example-spacer"></span>
 
-    <a *ngIf="perfil== 1" mat-button  routerLink="/ConsultaPedido" >Visitas Terreno</a>
-    <a *ngIf="perfil== 1" mat-button  routerLink="/ConsultaEquiposInstalados" >Consulta equipos instalados</a> 
-    <a *ngIf="perfil== 2" mat-button  routerLink="/Ventas" >Ventas</a> 
+  <button *ngIf="perfil == 1" mat-button routerLink="/ConsultaPedido" matTooltip="Consulta equipos instalados">
+    Visitas Terreno
+  </button>
+  <button
+    *ngIf="perfil == 1"
+    mat-button
+    routerLink="/ConsultaEquiposInstalados" matTooltip="Consulta equipos instalados"
+  >
+    Consulta equipos instalados
+  </button>
+  <button *ngIf="perfil == 1" mat-button routerLink="/ventas-instale-tiendas" matTooltip="Venta Instale">
+    Venta Instale
+  </button>
+  <button *ngIf="perfil == 2" mat-button routerLink="/Ventas" matTooltip="Ventas">Ventas</button>
+  <span class="example-spacer"></span>
+  <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar Session">
+    <span class="example-spacer"></span>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
 
-    <a mat-button (click)="CerrarSesion()">Cerrar sesión</a>
-</header>
+<mat-toolbar color="primary" *ngIf="!desired_columns">
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button *ngIf="perfil == 1" mat-menu-item routerLink="/ConsultaPedido">Visitas Terreno</button>
+    <button *ngIf="perfil == 1" mat-menu-item routerLink="/ConsultaEquiposInstalados">Consulta equipos instalados</button>
+    <button *ngIf="perfil == 1" mat-menu-item routerLink="/ventas-instale-tiendas">Venta Instale</button>
+    <button *ngIf="perfil == 2" mat-menu-item routerLink="/Ventas">Ventas</button>
+    <button mat-menu-item (click)="CerrarSesion()">Cerrar Session</button>
+  </mat-menu>
+
+  <span class="example-spacer"></span>
+  <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
+</mat-toolbar>
