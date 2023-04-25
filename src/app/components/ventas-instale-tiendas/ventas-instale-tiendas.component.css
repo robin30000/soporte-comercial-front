@@ -6,11 +6,11 @@
     width: 90%;
 }
 
-.menor{
+.menor {
     width: 80%;
 }
 
-.start{
+.start {
     margin-right: auto;
     background-color: #102b58;
 }
@@ -19,16 +19,31 @@
     margin-right: 30px;
 }
 
-.full{
+.full {
     width: 95%;
 }
 
-.fullM{
+.fullM {
     width: 90%;
 }
 
+/* .mat-form-field-infix .ng-tns-c30-2{
+    display: contents;
+} */
+
+.mat-form-field-infix {
+    display: contents !important;
+}
+
+table {
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
 
 
-
-
-
+.demo-section+.demo-section {
+    margin-top: 16px;
+}

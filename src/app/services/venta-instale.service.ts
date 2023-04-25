@@ -19,4 +19,9 @@ export class VentaInstaleService {
     return this.http.post(`http://10.100.66.254:8080/seguimientosApi/controllers/seguimientosCtrl.php/`, data);
   }
 
+  public respuestasPedidos(pageNumber: Number, pageSize: Number, login: string): Observable<any> {
+    const data = { 'method': 'respuestasPedidos', 'data':{ 'login' : login, 'pageNumber' : pageNumber, 'pageSize': pageSize }};
+    return this.http.post(`http://netvm-ptctrl01/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
+  }
+
 }

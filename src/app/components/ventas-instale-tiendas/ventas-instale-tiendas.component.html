@@ -1,6 +1,8 @@
 <app-header></app-header>
-<mat-card>
-  <mat-card-content>
+
+<br />
+<mat-tab-group animationDuration="0ms" mat-align-tabs="center">
+  <mat-tab label="Solicitud">
     <mat-grid-list cols="1" rowHeight="100px">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <h2>Solicitud disponibilidad de agendas</h2>
@@ -11,10 +13,15 @@
     <form [formGroup]="form" (ngSubmit)="registrar()">
       <mat-grid-list cols="{{ desired_columns }}" rowHeight="120px">
         <mat-grid-tile
-          [colspan]="desired_columns == 4 ? desired_columns - 2 : desired_columns - 1"
+          [colspan]="
+            desired_columns == 4 ? desired_columns - 2 : desired_columns - 1
+          "
           [rowspan]="1"
         >
-          <mat-form-field appearance="fill" [ngClass]="desired_columns == 2 ? 'menor' : 'ancho'">
+          <mat-form-field
+            appearance="fill"
+            [ngClass]="desired_columns == 2 ? 'menor' : 'ancho'"
+          >
             <mat-label>Pedido</mat-label>
             <input
               matInput
@@ -26,10 +33,18 @@
         </mat-grid-tile>
 
         <mat-grid-tile
-          [colspan]="desired_columns == 4 ? desired_columns - 3 : desired_columns - 1"
+          [colspan]="
+            desired_columns == 4 ? desired_columns - 3 : desired_columns - 1
+          "
           [rowspan]="1"
         >
-          <button mat-fab color="primary" class="start" (click)="buscaPedidoVenta()">
+          <button
+            mat-fab
+            color="primary"
+            class="start"
+            (click)="buscaPedidoVenta()"
+            matTooltip="Buscar pedido"
+          >
             <mat-icon>search</mat-icon>
           </button>
         </mat-grid-tile>
@@ -47,7 +62,11 @@
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
-          <mat-form-field appearance="fill" class="ancho">
+          <mat-form-field
+            class="example-full-width"
+            appearance="fill"
+            class="ancho"
+          >
             <mat-label>Fecha Atencion</mat-label>
             <input
               matInput
@@ -131,13 +150,78 @@
         </mat-grid-tile>
       </mat-grid-list>
     </form>
-  </mat-card-content>
-</mat-card>
 
-<mat-card-content *ngIf="!state">
-  <mat-grid-list cols="1" rowHeight="100px">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <h2>Para iniciar digite un pedido valido</h2>
-    </mat-grid-tile>
-  </mat-grid-list>
-</mat-card-content>
+    <mat-card-content *ngIf="!state">
+      <mat-grid-list cols="1" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <h2>Para iniciar digite un pedido valido</h2>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-tab>
+  <mat-tab label="Respuestas">
+    <mat-card>
+
+      <mat-card-content>
+        <div class="demo-section">
+          Consolidado
+          <mat-icon [matBadge]="ok" matBadgeColor="primary" matTooltip="Solicitudes Aprovadas">done</mat-icon>&nbsp;&nbsp;
+            <mat-icon [matBadge]="error" matBadgeColor="warn" matTooltip="Solicitudes rechazadas">close</mat-icon>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Filtro</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            #input
+            autocomplete="off"
+          />
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+          <ng-container matColumnDef="pedido" sticky>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Pedido</th>
+            <td mat-cell *matCellDef="let element">{{ element.pedido }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="observacion_gestion" sticky>
+            <th mat-header-cell *matHeaderCellDef>Observacion Seguimiento</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.observacion_gestion }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tipificacion" sticky>
+            <th mat-header-cell *matHeaderCellDef>Tipificacion</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.tipificacion }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="obs_tipificacion" sticky>
+            <th mat-header-cell *matHeaderCellDef>Detalle Tipificacion</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.obs_tipificacion }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fecha_gestion" sticky>
+            <th mat-header-cell *matHeaderCellDef>Fecha Gestion</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.fecha_gestion }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]" [pageSize]="pageSize"
+  [length]="totalItems" (page)="onPageChange($event)"></mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

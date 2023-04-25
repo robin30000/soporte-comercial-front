@@ -2,7 +2,7 @@
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
   <span class="example-spacer"></span>
 
-  <button *ngIf="perfil == 1" mat-button routerLink="/ConsultaPedido" matTooltip="Consulta equipos instalados">
+  <button class="docs-navbar-header-item-selected" *ngIf="perfil == 1" mat-button routerLink="/ConsultaPedido" matTooltip="Consulta equipos instalados">
     Visitas Terreno
   </button>
   <button
@@ -29,7 +29,7 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button *ngIf="perfil == 1" mat-menu-item routerLink="/ConsultaPedido">Visitas Terreno</button>
+    <button *ngIf="perfil == 1" mat-menu-item routerLink="/ConsultaPedido" class="active">Visitas Terreno</button>
     <button *ngIf="perfil == 1" mat-menu-item routerLink="/ConsultaEquiposInstalados">Consulta equipos instalados</button>
     <button *ngIf="perfil == 1" mat-menu-item routerLink="/ventas-instale-tiendas">Venta Instale</button>
     <button *ngIf="perfil == 2" mat-menu-item routerLink="/Ventas">Ventas</button>
