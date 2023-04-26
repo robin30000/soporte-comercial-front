@@ -42,6 +42,13 @@ export class VentasComponent implements OnInit {
     if (this.perfil != 2 && this.perfil == 1) {
       this.router.navigate(['ConsultaPedido'])
     }
+    if (this.perfil != 2 && this.perfil == 3) {
+      this.router.navigate(['ventas-instale-tiendas'])
+    }
+
+    if(this.perfil == '' && this.perfil == null){
+      this.router.navigate(['login'])
+    }
   }
   buscar() {
     this.aparece = false;

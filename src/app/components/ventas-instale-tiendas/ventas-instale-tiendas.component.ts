@@ -94,9 +94,18 @@ export class VentasInstaleTiendasComponent implements OnInit {
     this.login = localStorage.getItem('user');
 
     this.perfil = localStorage.getItem('perfil')
-    if (this.perfil != 1 && this.perfil == 2) {
+    if (this.perfil != 3 && this.perfil == 2) {
       this.router.navigate(['Ventas'])
     }
+    if (this.perfil != 3 && this.perfil == 1) {
+      this.router.navigate(['ConsultaPedido'])
+    }
+
+    if(this.perfil == '' && this.perfil == null){
+      this.router.navigate(['login'])
+    }
+
+    
 
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;

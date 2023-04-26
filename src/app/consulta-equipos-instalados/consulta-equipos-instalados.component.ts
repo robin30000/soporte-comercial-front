@@ -41,6 +41,13 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
     if(this.perfil != 1 && this.perfil == 2){
       this.router.navigate(['Ventas'])
     }
+    if (this.perfil != 1 && this.perfil == 3) {
+      this.router.navigate(['ventas-instale-tiendas'])
+    }
+
+    if(this.perfil == '' && this.perfil == null){
+      this.router.navigate(['login'])
+    }
   }
 
   buscar() {
