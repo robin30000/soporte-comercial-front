@@ -31,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 import { VentasComponent } from './ventas/ventas.component';
@@ -77,7 +78,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatMenuModule,
     MatTooltipModule,
     MatBadgeModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    CdkAccordionModule
   ],
   providers: [
     //{provide:LocationStrategy,useClass:HashLocationStrategy},

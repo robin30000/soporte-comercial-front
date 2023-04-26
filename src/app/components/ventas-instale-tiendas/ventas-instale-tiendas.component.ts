@@ -41,6 +41,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
     'TD'
   ]
 
+  expandedIndex = 0;
+
   form: FormGroup;
   public datos: Array<any> = [];
   public getScreenWidth: any;
@@ -52,18 +54,19 @@ export class VentasInstaleTiendasComponent implements OnInit {
   perfil: any;
   login: any;
 
-  totalData: number = 0;
-
+  minDate: Date;
 
   dataSource = new MatTableDataSource<RespuestaPedidoVenta>;
   displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_gestion'];
 
   totalItems = 0;
   pageSize = 10;
+  pedido = 0
+  pageNumber = 1;
   listPedido: RespuestaPedidoVenta[] = [];
 
-  getTableData$(pageNumber: Number, pageSize: Number) {
-    return this._ventaInstale.respuestasPedidos(pageNumber, pageSize, this.login);
+  getTableData$(pageNumber: Number, pageSize: Number, pedido: any) {
+    return this._ventaInstale.respuestasPedidos(pageNumber, pageSize, this.login, pedido);
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -79,6 +82,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
       contacto_cliente: ['', Validators.required],
       observacion_canal: ['', Validators.required],
     });
+    this.minDate = new Date();
   }
 
   ngOnInit(): void {
@@ -99,8 +103,6 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
     this.onWindowResize();
     this._MatPaginatorIntl.itemsPerPageLabel = 'Item por pagina';
-
-
   }
 
   ngAfterViewInit(): void {
@@ -111,12 +113,12 @@ export class VentasInstaleTiendasComponent implements OnInit {
         switchMap(() => {
           return this.getTableData$(
             this.paginator.pageIndex + 1,
-            this.paginator.pageSize
+            this.paginator.pageSize,
+            this.pedido
           ).pipe(catchError(res));
         }),
         map((empData) => {
           if (empData == null) return [];
-          this.totalData = empData.count;
           return empData;
         })
       )
@@ -138,18 +140,25 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.getTableData$(1, 10, filterValue).subscribe(res => {
+      this.dataSource = new MatTableDataSource(res.data);
+      this.listPedido = res.data;
+      this.ok = 0;
+      this.error = 0;
+      for (let i = 0; i < this.listPedido.length; i++) {
+        if (this.listPedido[i].tipificacion == 'Ok') {
+          this.ok++;
+        } else {
+          this.error++;
+        }
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-
     if (this.getScreenWidth < 767) {
       this.desired_columns = 2;
     } else {
@@ -160,32 +169,43 @@ export class VentasInstaleTiendasComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.paginator.pageIndex = event.pageIndex;
-    
   }
 
   buscaPedidoVenta() {
     const pedido = this.form.value.pedido;
-    this._ventaInstale.buscaPedido(pedido)
-      .subscribe((response) => {
-        this.datos = Object.values(response);
-        if (this.datos[0] != 0) {
-          this.state = 1;
-          this.form.patchValue({
-            contacto_cliente: response.data.contacto_cliente,
-            documento_cliente: response.data.documento_cliente,
-            regional: response.data.regional
-          });
-        } else {
-          Swal.fire({
-            icon: 'info',
-            title: 'Oops...',
-            text: 'Pedido no se encuentra en la base de datos',
-          })
-        }
+    if (!pedido) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingrese un pedido',
       })
+    } else {
+      this._ventaInstale.buscaPedido(pedido)
+        .subscribe((response) => {
+          if (response.state != 0) {
+            this.state = 1;
+            this.form.patchValue({
+              contacto_cliente: response.data.contacto_cliente,
+              documento_cliente: response.data.documento_cliente,
+              regional: response.data.regional
+            });
+          } else {
+            Swal.fire({
+              icon: 'info',
+              title: 'Oops...',
+              text: 'Pedido no se encuentra en la base de datos',
+            })
+          }
+        })
+    }
   }
 
   registrar() {
+
+    if (this.form.invalid) {
+      return;
+    }
+
     if (this.form.valid) {
       const pedido: VentasInstaleTienda = {
         fecha_atencion: this.form.value.fecha_atencion,
@@ -200,11 +220,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
       this._ventaInstale.guardaPedido(pedido)
         .subscribe(res => {
-          this.datos = Object.values(res);
-          console.log(res);
-          
-          if (this.datos[0] != 0) {
-
+          if (res.state != 0) {
             Swal.fire({
               icon: 'success',
               title: 'Muy Bien',
