@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormBuilder,Validators,FormGroup} from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from '../services/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
 export interface Usuario {
   username: string;
   password: string;
@@ -16,62 +16,65 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   user1: any;
-  loding= false;
-  
+  loding = false;
+
   @ViewChild('lform') loginFormDirective: any;
 
-  
+
   formErrors = {
     username: '',
     password: ''
   }
 
   validationMsj = {
-    'username' : {
-      'required' : 'El nombre de usuario es obligatorio'
+    'username': {
+      'required': 'El nombre de usuario es obligatorio'
     },
-    'password' : {
-      'required' : 'Debe escribir la contraseña'
+    'password': {
+      'required': 'Debe escribir la contraseña'
     }
   }
 
-  constructor(private router:Router,
+  constructor(private router: Router,
     private fb: FormBuilder,
     private alerts: MatSnackBar,
-    private authService: AuthService) { 
-      this.loginForm = this.fb.group({
-        username: ['',Validators.required],
-        password: ['',Validators.required]
-      })
+    private authService: AuthService) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
+
+  public iniciarSesion() {
+    let login = {
+      'username': this.loginForm.value.username,
+      'password': this.loginForm.value.password
     }
 
-    public iniciarSesion(){
-      let login = {
-        'username': this.loginForm.value.username,
-        'password' : this.loginForm.value.password
-      }
-  
-      this.authService.login(login).subscribe(res => {
+    this.authService.login(login).subscribe(res => {
 
-        let perfil= res[2][0]['Perfil'];
-        if(res[1]==200){
-          localStorage.setItem('perfil', perfil)
-          if(perfil == 1){
-            localStorage.setItem('user', this.loginForm.value.username)
-            this.router.navigate(['ConsultaPedido']);
-          }else if(perfil==2){
-            localStorage.setItem('user', this.loginForm.value.username)
-            this.router.navigate(['Ventas']);
-          }
-
-        }else if(res[1]==400){
-          this.alerts.open(res[0],'Cerrar',{duration:4000})
+      let perfil = res[2][0]['Perfil'];
+      if (res[1] == 200) {
+        localStorage.setItem('perfil', perfil)
+        if (perfil == 1) {
+          localStorage.setItem('user', this.loginForm.value.username)
+          this.router.navigate(['ConsultaPedido']);
+        } else if (perfil == 2) {
+          localStorage.setItem('user', this.loginForm.value.username)
+          this.router.navigate(['Ventas']);
+        } else if (perfil == 3) {
+          localStorage.setItem('user', this.loginForm.value.username)
+          this.router.navigate(['ventas-instale-tiendas']);
         }
-        },
-        error => this.alerts.open(error.error,'Cerrar',{duration:4000}));
-  
-    }
-    
+
+      } else if (res[1] == 400) {
+        this.alerts.open(res[0], 'Cerrar', { duration: 4000 })
+      }
+    },
+      error => this.alerts.open(error.error, 'Cerrar', { duration: 4000 }));
+
+  }
+
 
   ngOnInit(): void {
   }

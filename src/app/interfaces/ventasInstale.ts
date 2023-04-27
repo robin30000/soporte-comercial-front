@@ -6,5 +6,8 @@ export interface VentasInstaleTienda{
     documento_cliente: string,
     contacto_cliente: string,
     observacion_canal: string,
-    login_despacho: string
+    login_despacho: string,
+    nombre_tecnico: string,
+    documento_tecnico:string
 }
+

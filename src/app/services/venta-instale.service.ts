@@ -24,4 +24,9 @@ export class VentaInstaleService {
     return this.http.post(`http://netvm-ptctrl01/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
   }
 
+  public validaTecnico(documento_tecnico: any): Observable<any> {
+    const data = { 'method': 'documento_tecnico', 'data':{ 'documento_tecnico' : documento_tecnico}};
+    return this.http.post(`http://netvm-ptctrl01/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
+  }
+
 }

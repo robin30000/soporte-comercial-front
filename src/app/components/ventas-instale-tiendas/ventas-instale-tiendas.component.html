@@ -10,7 +10,11 @@
     </mat-grid-list>
     <br />
 
-    <form [formGroup]="form" (ngSubmit)="registrar()" *ngIf="desired_columns == 4">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="registrar()"
+      *ngIf="desired_columns == 4"
+    >
       <mat-grid-list cols="{{ desired_columns }}" rowHeight="120px">
         <mat-grid-tile
           [colspan]="
@@ -40,7 +44,7 @@
         >
           <button
             type="button"
-            mat-fab
+            mat-mini-fab
             color="primary"
             class="start"
             (click)="buscaPedidoVenta()"
@@ -48,6 +52,54 @@
           >
             <mat-icon>search</mat-icon>
           </button>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Documento Tecnico</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="documento_tecnico"
+            />
+            <mat-hint>
+              <span class="error">Este Campo es opcional</span>
+            </mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="
+            desired_columns == 4 ? desired_columns - 3 : desired_columns - 1
+          "
+          [rowspan]="1"
+          *ngIf="!state_tecnico && state"
+        >
+          <button
+            type="button"
+            mat-mini-fab
+            class="start"
+            (click)="validaTecnico()"
+            matTooltip="Validar Tecnico"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="2"
+          [rowspan]="1"
+          *ngIf="state_tecnico && state"
+        >
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre Tecnico</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="nombre_tecnico"
+              required
+            />
+          </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
@@ -118,11 +170,18 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile
-          [colspan]="1"
-          [rowspan]="1"
-          *ngIf="desired_columns == 4"
-        ></mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Region</mat-label>
+            <input
+              matInput
+              matInput
+              autocomplete="off"
+              formControlName="region"
+              required
+            />
+          </mat-form-field>
+        </mat-grid-tile>
 
         <mat-grid-tile [colspan]="desired_columns" [rowspan]="1" *ngIf="state">
           <mat-form-field
@@ -154,7 +213,11 @@
     </form>
 
     <form [formGroup]="form" (ngSubmit)="registrar()">
-      <mat-grid-list cols="{{ desired_columns }}" rowHeight="120px" *ngIf="desired_columns == 2">
+      <mat-grid-list
+        cols="{{ desired_columns }}"
+        rowHeight="120px"
+        *ngIf="desired_columns == 2"
+      >
         <mat-grid-tile
           [colspan]="
             desired_columns == 4 ? desired_columns - 2 : desired_columns - 1
@@ -183,7 +246,7 @@
         >
           <button
             type="button"
-            mat-fab
+            mat-mini-fab
             color="primary"
             class="start"
             (click)="buscaPedidoVenta()"
@@ -191,6 +254,61 @@
           >
             <mat-icon>search</mat-icon>
           </button>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="
+            desired_columns == 4 ? desired_columns - 2 : desired_columns - 1
+          "
+          [rowspan]="1"
+          *ngIf="state"
+        >
+          <mat-form-field [ngClass]="desired_columns == 2 ? 'menor' : 'ancho'" appearance="fill">
+            <mat-label>Documento Tecnico</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="documento_tecnico"
+            />
+            <mat-hint>
+              <span class="error">Este Campo es opcional</span>
+            </mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="
+            desired_columns == 4 ? desired_columns - 3 : desired_columns - 1
+          "
+          [rowspan]="1"
+          [rowspan]="1"
+          *ngIf="!state_tecnico && state"
+        >
+          <button
+            type="button"
+            mat-mini-fab
+            class="start"
+            (click)="validaTecnico()"
+            matTooltip="Validar Tecnico"
+          >
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-grid-tile>
+
+        <mat-grid-tile
+          [colspan]="2"
+          [rowspan]="1"
+          *ngIf="state_tecnico && state"
+        >
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre Tecnico</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="nombre_tecnico"
+              required
+            />
+          </mat-form-field>
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
@@ -250,8 +368,6 @@
           </mat-form-field>
         </mat-grid-tile>
 
-
-
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
           <mat-form-field class="ancho" appearance="fill">
             <mat-label>Regional</mat-label>
@@ -263,11 +379,18 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile
-          [colspan]="1"
-          [rowspan]="1"
-          *ngIf="desired_columns == 4"
-        ></mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Region</mat-label>
+            <input
+              matInput
+              matInput
+              autocomplete="off"
+              formControlName="region"
+              required
+            />
+          </mat-form-field>
+        </mat-grid-tile>
 
         <mat-grid-tile [colspan]="desired_columns" [rowspan]="1" *ngIf="state">
           <mat-form-field
@@ -325,15 +448,15 @@
           >
         </div>
 
-          <mat-form-field>
-            <mat-label>Pedido</mat-label>
-            <input
-              matInput
-              (keyup)="applyFilter($event)"
-              #input
-              autocomplete="off"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Pedido</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            #input
+            autocomplete="off"
+          />
+        </mat-form-field>
 
         <table
           mat-table

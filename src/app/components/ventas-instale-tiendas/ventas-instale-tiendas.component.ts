@@ -29,7 +29,7 @@ export interface RespuestaPedidoVenta {
 export class VentasInstaleTiendasComponent implements OnInit {
 
   region: any[] = [
-    'Noroccidente',
+    'Andina',
     'Norte',
     'Sur',
     'Centro'
@@ -51,10 +51,11 @@ export class VentasInstaleTiendasComponent implements OnInit {
   public state: number = 0;
   public ok: number = 0;
   public error: number = 0;
-  perfil: any;
-  login: any;
+  public perfil: any;
+  public login: any;
+  public state_tecnico: number = 0;
+  public minDate: Date;
 
-  minDate: Date;
 
   dataSource = new MatTableDataSource<RespuestaPedidoVenta>;
   displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_gestion'];
@@ -81,6 +82,9 @@ export class VentasInstaleTiendasComponent implements OnInit {
       documento_cliente: ['', Validators.required],
       contacto_cliente: ['', Validators.required],
       observacion_canal: ['', Validators.required],
+      region: ['', Validators.required],
+      documento_tecnico: [''],
+      nombre_tecnico: [''],
     });
     this.minDate = new Date();
   }
@@ -101,11 +105,9 @@ export class VentasInstaleTiendasComponent implements OnInit {
       this.router.navigate(['ConsultaPedido'])
     }
 
-    if(this.perfil == '' && this.perfil == null){
+    if (this.perfil == '' && this.perfil == null) {
       this.router.navigate(['login'])
     }
-
-    
 
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
@@ -191,13 +193,22 @@ export class VentasInstaleTiendasComponent implements OnInit {
     } else {
       this._ventaInstale.buscaPedido(pedido)
         .subscribe((response) => {
-          if (response.state != 0) {
-            this.state = 1;
-            this.form.patchValue({
-              contacto_cliente: response.data.contacto_cliente,
-              documento_cliente: response.data.documento_cliente,
-              regional: response.data.regional
-            });
+          if (response.state == 1) {
+            if (response.data.UNEDoNotDispatch == 0) {
+              this.state = 1;
+              this.form.patchValue({
+                contacto_cliente: response.data.contacto_cliente,
+                documento_cliente: response.data.documento_cliente,
+                regional: response.data.regional,
+                region: response.data.region
+              });
+            } else if (response.data.UNEDoNotDispatch == -1) {
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Estado pedido no asignable (Amarillo) Debes completar la informacion manualmente',
+              })
+            }
           } else {
             Swal.fire({
               icon: 'info',
@@ -206,6 +217,34 @@ export class VentasInstaleTiendasComponent implements OnInit {
             })
           }
         })
+    }
+  }
+
+  validaTecnico() {
+    const documento_tecnico = this.form.value.documento_tecnico;
+    if (documento_tecnico == '') {
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Digite un documento de identidad valido'
+      })
+    } else {
+      this._ventaInstale.validaTecnico(documento_tecnico).subscribe(res => {
+        console.log(res);
+
+        if (res.state != 0) {
+          this.state_tecnico = 1;
+          this.form.patchValue({
+            nombre_tecnico: res.data[0].nombre
+          });
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: 'Oops...',
+            text: res.msj,
+          })
+        }
+      })
     }
   }
 
@@ -224,7 +263,17 @@ export class VentasInstaleTiendasComponent implements OnInit {
         documento_cliente: this.form.value.documento_cliente,
         contacto_cliente: this.form.value.contacto_cliente,
         observacion_canal: this.form.value.observacion_canal,
-        login_despacho: this.login
+        login_despacho: this.login,
+        nombre_tecnico: this.form.value.nombre_tecnico,
+        documento_tecnico: this.form.value.documento_tecnico
+      }
+
+      if (pedido.documento_tecnico == '') {
+        pedido.nombre_tecnico = ''
+      }
+
+      if (pedido.nombre_tecnico == '') {
+        pedido.documento_tecnico = ''
       }
 
       this._ventaInstale.guardaPedido(pedido)
@@ -238,6 +287,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
             }).then(() => {
               this.form.reset();
               this.state = 0;
+              this.state_tecnico = 0;
             })
           } else {
             Swal.fire({
