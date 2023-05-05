@@ -8,7 +8,16 @@
         <h2>Solicitud disponibilidad de agendas</h2>
       </mat-grid-tile>
     </mat-grid-list>
-    <br />
+
+    <mat-card *ngIf="datosObervaciones">
+      <mat-card-content>
+
+          <ul id="lista1" >
+            <li *ngFor="let dato of datosObervaciones">{{ dato.observacion }} : {{ dato.hora }} <span class="separador"> | </span></li> 
+          </ul>
+    
+      </mat-card-content>
+    </mat-card>
 
     <form
       [formGroup]="form"
@@ -263,7 +272,10 @@
           [rowspan]="1"
           *ngIf="state"
         >
-          <mat-form-field [ngClass]="desired_columns == 2 ? 'menor' : 'ancho'" appearance="fill">
+          <mat-form-field
+            [ngClass]="desired_columns == 2 ? 'menor' : 'ancho'"
+            appearance="fill"
+          >
             <mat-label>Documento Tecnico</mat-label>
             <input
               matInput

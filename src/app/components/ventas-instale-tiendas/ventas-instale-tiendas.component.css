@@ -126,3 +126,15 @@ mat-hint{
   padding: 5px 0 5px 0;
   margin: 0;
 }
+
+#lista1 {
+  font-size:16px;
+}
+.separador {
+  font-size: 20px;
+}
+#lista1 li {
+   display:inline;
+   padding-left:3px;
+   padding-right:3px;
+}

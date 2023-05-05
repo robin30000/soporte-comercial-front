@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,7 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 
 import { VentasComponent } from './ventas/ventas.component';
@@ -55,7 +55,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule, MatDialogModule,
+    HttpClientModule,
+    MatDialogModule,
     MatButtonModule,
     MatCardModule,
     MatSliderModule,
@@ -79,7 +80,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTooltipModule,
     MatBadgeModule,
     MatProgressBarModule,
-    CdkAccordionModule
+    CdkAccordionModule,
   ],
   providers: [
     //{provide:LocationStrategy,useClass:HashLocationStrategy},

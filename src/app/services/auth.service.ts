@@ -20,7 +20,21 @@ export class AuthService {
   }
   login(user: Object,): Observable<any>{
     let data = {method:'Login',data:user}
-    return this.http.post<any>( `http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
-    //return this.http.post<any>( `http://localhost:8080/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+
+    let host = location.host;
+    let server;
+
+    if (host == 'localhost:4200') {
+      server = this.http.post<any>( `http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+    }else if (host == '10.100.88.2') {
+      server = this.http.post<any>( `http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+    }else{
+      server = this.http.post<any>( `http://200.13.250.190/visitas-terreno/api/Controllers/Auth.php`,data, this.httpOptions);
+    }
+
+    console.log(location);
+    
+    return server
+
   }
 }

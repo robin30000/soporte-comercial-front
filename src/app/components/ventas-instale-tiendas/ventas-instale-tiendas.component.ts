@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent, MatPaginatorIntl } from '@angular/material/paginator';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,7 +11,7 @@ import { catchError, count, map, merge, Observable, ObservableInput, startWith, 
 import { VentasInstaleTienda } from 'src/app/interfaces/ventasInstale';
 import { VentaInstaleService } from 'src/app/services/venta-instale.service';
 import Swal from 'sweetalert2';
-
+import { MatTableModule } from '@angular/material/table';
 
 export interface RespuestaPedidoVenta {
   pedido: number,
@@ -55,6 +56,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
   public login: any;
   public state_tecnico: number = 0;
   public minDate: Date;
+  public countObservaciones: number = 0;
+  public datosObervaciones: any;
 
 
   dataSource = new MatTableDataSource<RespuestaPedidoVenta>;
@@ -73,7 +76,13 @@ export class VentasInstaleTiendasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private fb: FormBuilder, private _ventaInstale: VentaInstaleService, private router: Router, private _MatPaginatorIntl: MatPaginatorIntl) {
+  constructor(
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private _ventaInstale: VentaInstaleService,
+    private router: Router,
+    private _MatPaginatorIntl: MatPaginatorIntl
+  ) {
     this.form = this.fb.group({
       fecha_atencion: ['', Validators.required],
       jornada_atencion: ['', Validators.required],
@@ -111,6 +120,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
+    this.observacionesDespacho();
 
     this.onWindowResize();
     this._MatPaginatorIntl.itemsPerPageLabel = 'Item por pagina';
@@ -180,6 +190,17 @@ export class VentasInstaleTiendasComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.paginator.pageIndex = event.pageIndex;
+  }
+
+  observacionesDespacho() {
+    this._ventaInstale.observacionesDespacho().subscribe((data) => {
+      this.countObservaciones = data.data.length;
+      this.datosObervaciones = data.data
+    })
+  }
+
+  verObservaciones() {
+    
   }
 
   buscaPedidoVenta() {
