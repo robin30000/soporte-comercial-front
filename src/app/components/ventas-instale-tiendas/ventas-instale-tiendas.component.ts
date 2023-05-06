@@ -214,16 +214,18 @@ export class VentasInstaleTiendasComponent implements OnInit {
     } else {
       this._ventaInstale.buscaPedido(pedido)
         .subscribe((response) => {
-          if (response.state == 1) {
-            if (response.data.UNEDoNotDispatch == 0) {
+          console.log(response[0]['contacto_cliente'], ' este');
+          
+          if (response[0]['contacto_cliente']) {
+            if (response[0]['UNEDoNotDispatch'] == 0) {
               this.state = 1;
               this.form.patchValue({
-                contacto_cliente: response.data.contacto_cliente,
-                documento_cliente: response.data.documento_cliente,
-                regional: response.data.regional,
-                region: response.data.region
+                contacto_cliente: response[0]['contacto_cliente'],
+                documento_cliente: response[0]['documento_cliente'],
+                regional: response[0]['regional'],
+                region: response[0]['region']
               });
-            } else if (response.data.UNEDoNotDispatch == -1) {
+            } else if (response[0]['UNEDoNotDispatch'] == -1) {
               Swal.fire({
                 icon: 'info',
                 title: 'Oops...',
