@@ -76,7 +76,6 @@ export class ConsultaPedidoComponent implements OnInit {
     }
 
     this.consulta.consultaVisitasTerreno(pedido,cedula).subscribe(res=>{
-      console.log(res);
       if(res==null ||res==''){
         this.aparece=false
         this.loading=false;

@@ -105,7 +105,6 @@ export class VentasComponent implements OnInit {
             
             let IncompleteCode = res1[0]['IncompleteCode']
             let concepto = res1[0]['Concepto']
-            console.log(res1);
             if(res1[0]['ObsTecnico'] == ''|| res1[0]['ObsTecnico'] == null){
              this.Observacion= "Para este pedido el tecnico no registro observaciones"
             }else{

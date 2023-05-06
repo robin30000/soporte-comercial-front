@@ -23,15 +23,11 @@ export class AuthService {
 
     let host = location.host;
     let server;
-    console.log(location.host);
-
     if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
     }
-    console.log(location);
-
     return server
 
   }

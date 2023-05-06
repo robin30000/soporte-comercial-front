@@ -214,8 +214,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
       })
     } else {
       this._ventaInstale.buscaPedido(pedido)
-        .subscribe((response) => {
-          console.log(response)          
+        .subscribe((response) => {         
           if (response[0]['contacto_cliente']) {
             if (response[0]['UNEDoNotDispatch'] == 0) {
               this.state = 1;
@@ -254,7 +253,6 @@ export class VentasInstaleTiendasComponent implements OnInit {
       })
     } else {
       this._ventaInstale.validaTecnico(documento_tecnico).subscribe(res => {
-        console.log(res);
 
         if (res.state != 0) {
           this.state_tecnico = 1;
