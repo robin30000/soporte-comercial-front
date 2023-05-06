@@ -20,12 +20,10 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if (host == 'localhost:4200') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else if (host == '10.100.88.2' || host == 'netvm-ptctrl01') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else {
+    if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
     }
 
     return server
@@ -36,13 +34,10 @@ export class VentaInstaleService {
 
     let host = location.host
     let server;
-
-    if (host == 'localhost:4200') {
-      server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
-    } else if (host == '10.100.88.2' || host == 'netvm-ptctrl01') {
-      server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
-    } else {
+    if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
     }
 
     return server
@@ -54,12 +49,10 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if (host == 'localhost:4200') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else if (host == '10.100.88.2' || host == 'netvm-ptctrl01') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else {
+    if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
     }
 
     return server
@@ -70,12 +63,10 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if (host == 'localhost:4200') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else if (host == '10.100.88.2' || host == 'netvm-ptctrl01') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else {
+    if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
     }
     return server
   }
@@ -84,13 +75,10 @@ export class VentaInstaleService {
     const data = { 'method': 'observaciones'};
     let host = location.host
     let server;
-
-    if (host == 'localhost:4200') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else if (host == '10.100.88.2' || host == 'netvm-ptctrl01') {
-      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
-    } else {
+    if(host === 'adsl200-13-250-190.epm.net.co'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
     }
     return server
   }

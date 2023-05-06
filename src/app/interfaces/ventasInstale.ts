@@ -8,6 +8,7 @@ export interface VentasInstaleTienda{
     observacion_canal: string,
     login_despacho: string,
     nombre_tecnico: string,
-    documento_tecnico:string
+    documento_tecnico:string,
+    categoria:string
 }
 

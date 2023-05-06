@@ -38,7 +38,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
   jornada: any[] = [
     'AM',
-    'PM',
+    'Masivo',
     'TD'
   ]
 
@@ -94,6 +94,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
       region: ['', Validators.required],
       documento_tecnico: [''],
       nombre_tecnico: [''],
+      categoria:['']
     });
     this.minDate = new Date();
   }
@@ -214,8 +215,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
     } else {
       this._ventaInstale.buscaPedido(pedido)
         .subscribe((response) => {
-          console.log(response[0]['contacto_cliente'], ' este');
-          
+          console.log(response)          
           if (response[0]['contacto_cliente']) {
             if (response[0]['UNEDoNotDispatch'] == 0) {
               this.state = 1;
@@ -223,7 +223,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
                 contacto_cliente: response[0]['contacto_cliente'],
                 documento_cliente: response[0]['documento_cliente'],
                 regional: response[0]['regional'],
-                region: response[0]['region']
+                region: response[0]['region'],
+                categoria: response[0]['categoria']
               });
             } else if (response[0]['UNEDoNotDispatch'] == -1) {
               Swal.fire({
@@ -288,7 +289,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
         observacion_canal: this.form.value.observacion_canal,
         login_despacho: this.login,
         nombre_tecnico: this.form.value.nombre_tecnico,
-        documento_tecnico: this.form.value.documento_tecnico
+        documento_tecnico: this.form.value.documento_tecnico,
+        categoria: this.form.value.categoria
       }
 
       if (pedido.documento_tecnico == '') {
