@@ -20,7 +20,7 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if(host === 'adsl200-13-250-190.epm.net.co'){
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
@@ -34,7 +34,7 @@ export class VentaInstaleService {
 
     let host = location.host
     let server;
-    if(host === 'adsl200-13-250-190.epm.net.co'){
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
       server = this.http.post<any>(`http://200.13.250.190/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`,data);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
@@ -49,7 +49,7 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if(host === 'adsl200-13-250-190.epm.net.co'){
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
@@ -63,7 +63,7 @@ export class VentaInstaleService {
     let host = location.host
     let server;
 
-    if(host === 'adsl200-13-250-190.epm.net.co'){
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
@@ -75,7 +75,7 @@ export class VentaInstaleService {
     const data = { 'method': 'observaciones'};
     let host = location.host
     let server;
-    if(host === 'adsl200-13-250-190.epm.net.co'){
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
       server = this.http.post<any>(`http://200.13.250.190/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`,data);
     }else{
       server = this.http.post<any>(`http://10.100.88.2/seguimientopedidos-dev/api/controller/ventaInstaleCtrl.php`, data);
