@@ -38,8 +38,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
   jornada: any[] = [
     'AM',
-    'Masivo',
-    'TD'
+    'PM',
+    'MASIVO'
   ]
 
   expandedIndex = 0;
@@ -214,8 +214,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
       })
     } else {
       this._ventaInstale.buscaPedido(pedido)
-        .subscribe((response) => {         
-          if (response[0]['contacto_cliente']) {
+        .subscribe((response) => {  
+          if (response.length) {
             if (response[0]['UNEDoNotDispatch'] == 0) {
               this.state = 1;
               this.form.patchValue({
@@ -226,6 +226,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
                 categoria: response[0]['categoria']
               });
             } else if (response[0]['UNEDoNotDispatch'] == -1) {
+              this.state = 1;
               Swal.fire({
                 icon: 'info',
                 title: 'Oops...',
