@@ -52,6 +52,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
   public state: number = 0;
   public ok: number = 0;
   public error: number = 0;
+  public pend: number = 0;
   public perfil: any;
   public login: any;
   public state_tecnico: number = 0;
@@ -153,9 +154,14 @@ export class VentasInstaleTiendasComponent implements OnInit {
         for (let i = 0; i < this.listPedido.length; i++) {
           if (this.listPedido[i].tipificacion == 'Ok') {
             this.ok++;
-          } else {
+          } 
+          if (this.listPedido[i].tipificacion == 'Rechazada') {
             this.error++;
-          }
+          } 
+
+          if (this.listPedido[i].tipificacion == null) {
+            this.pend++;
+          } 
         }
       });
   }
@@ -170,9 +176,15 @@ export class VentasInstaleTiendasComponent implements OnInit {
       for (let i = 0; i < this.listPedido.length; i++) {
         if (this.listPedido[i].tipificacion == 'Ok') {
           this.ok++;
-        } else {
+        } 
+        
+        if (this.listPedido[i].tipificacion == 'Rechazada') {
           this.error++;
-        }
+        } 
+
+        if (this.listPedido[i].tipificacion == null) {
+          this.pend++;
+        } 
       }
     });
   }

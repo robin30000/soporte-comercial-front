@@ -138,3 +138,10 @@ mat-hint{
    padding-left:3px;
    padding-right:3px;
 }
+
+[matBadgeColor=accent]{
+  .mat-badge-content{
+      background : #f1bf28;
+      color: #fff;
+  }
+}

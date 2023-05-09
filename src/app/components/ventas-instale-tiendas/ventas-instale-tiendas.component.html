@@ -446,17 +446,24 @@
       <mat-card-content>
         <div class="consolidado">
           Consolidado {{totalItems}}
+          &nbsp;
           <mat-icon
             [matBadge]="ok"
             matBadgeColor="primary"
             matTooltip="Solicitudes Aprovadas"
             >done</mat-icon
-          >&nbsp;&nbsp;
+          >&nbsp;&nbsp;&nbsp;
           <mat-icon
             [matBadge]="error"
             matBadgeColor="warn"
             matTooltip="Solicitudes rechazadas"
             >close</mat-icon
+          >&nbsp;&nbsp;&nbsp;
+          <mat-icon
+            [matBadge]="pend"
+            matBadgeColor="accent"
+            matTooltip="Pendientes o en gestion"
+            >question_mark</mat-icon
           >
         </div>
 
@@ -485,7 +492,7 @@
           <ng-container matColumnDef="observacion_gestion">
             <th mat-header-cell *matHeaderCellDef>Observacion Seguimiento</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.observacion_gestion }}
+              {{ element.observacion_gestion ? element.observacion_gestion : 'Pendiente o en gestion' }}
             </td>
           </ng-container>
 
@@ -544,7 +551,7 @@
                   [attr.id]="'accordion-body-' + index"
                   [attr.aria-labelledby]="'accordion-header-' + index"
                 >
-                  <span>Respuesta: {{ item.obs_tipificacion }}</span> <br />
+                  <span>Respuesta: {{ item.obs_tipificacion ? item.obs_tipificacion : 'Pendiente o en gestion' }}</span> <br />
                   <span>Fecha: {{ item.fecha_gestion }}</span> <br />
                 </div>
               </cdk-accordion-item>
