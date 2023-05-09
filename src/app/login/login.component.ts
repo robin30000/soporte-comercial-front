@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
+import Swal from 'sweetalert2';
 export interface Usuario {
   username: string;
   password: string;
@@ -52,9 +53,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(login).subscribe(res => {
-
-      let perfil = res[2][0]['Perfil'];
-      if (res[1] == 200) {
+      if (res[1] == 200400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Usuario y/o Contraseña no Validos',
+        })
+      }else if (res[1] == 200) {
+        let perfil = res[2][0]['Perfil'];
         localStorage.setItem('perfil', perfil)
         if (perfil == 1) {
           localStorage.setItem('user', this.loginForm.value.username)
@@ -66,13 +72,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', this.loginForm.value.username)
           this.router.navigate(['ventas-instale-tiendas']);
         }
-
-      } else if (res[1] == 400) {
-        this.alerts.open(res[0], 'Cerrar', { duration: 4000 })
       }
-    },
-      error => this.alerts.open(error.error, 'Cerrar', { duration: 4000 }));
-
+    })
   }
 
 
