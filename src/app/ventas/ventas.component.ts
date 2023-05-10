@@ -39,10 +39,10 @@ export class VentasComponent implements OnInit {
     }
     this.perfil = localStorage.getItem('perfil')
 
-    if (this.perfil != 2 && this.perfil == 1) {
+    if (this.perfil == 1 || this.perfil == 4) {
       this.router.navigate(['ConsultaPedido'])
     }
-    if (this.perfil != 2 && this.perfil == 3) {
+    if (this.perfil == 3) {
       this.router.navigate(['ventas-instale-tiendas'])
     }
 

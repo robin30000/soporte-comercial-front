@@ -40,10 +40,10 @@ export class ConsultaPedidoComponent implements OnInit {
     this.perfil  = localStorage.getItem('perfil')
 
     this.perfil  = localStorage.getItem('perfil')
-    if(this.perfil != 1 && this.perfil == 2){
+    if(this.perfil == 2){
       this.router.navigate(['Ventas'])
     }
-    if (this.perfil != 1 && this.perfil == 3) {
+    if (this.perfil == 3) {
       this.router.navigate(['ventas-instale-tiendas'])
     }
 

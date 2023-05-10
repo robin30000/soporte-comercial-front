@@ -71,6 +71,9 @@ export class LoginComponent implements OnInit {
         } else if (perfil == 3) {
           localStorage.setItem('user', this.loginForm.value.username)
           this.router.navigate(['ventas-instale-tiendas']);
+        } else if (perfil == 4) {
+          localStorage.setItem('user', this.loginForm.value.username)
+          this.router.navigate(['ConsultaPedido']);
         }
       }
     })
