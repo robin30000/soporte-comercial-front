@@ -1,17 +1,15 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { catchError, count, map, merge, Observable, ObservableInput, startWith, switchMap } from 'rxjs';
+import { catchError, map, Observable, ObservableInput, startWith, switchMap } from 'rxjs';
 import { VentasInstaleTienda } from 'src/app/interfaces/ventasInstale';
 import { VentaInstaleService } from 'src/app/services/venta-instale.service';
 import Swal from 'sweetalert2';
-import { MatTableModule } from '@angular/material/table';
 
 export interface RespuestaPedidoVenta {
   pedido: number,
@@ -228,6 +226,15 @@ export class VentasInstaleTiendasComponent implements OnInit {
       this._ventaInstale.buscaPedido(pedido)
         .subscribe((response) => {  
           if (response.length) {
+            if (response[0]['estado'] == 'Finalizada' || response[0]['estado'] == 'In Jeopardy' || response[0]['estado'] == 'Incompleto' || response[0]['estado'] == 'Pendiente' ||
+            response[0]['estado'] == 'Rechazado' || response[0]['estado'] == 'Suspendido' || response[0]['estado'] == 'Suspendido-Abierto' || response[0]['estado'] == 'Cancelado') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El pedido esta en un estado no valido.',
+              });
+              return;
+            }
             if (response[0]['UNEDoNotDispatch'] == 0) {
               this.state = 1;
               this.form.patchValue({
