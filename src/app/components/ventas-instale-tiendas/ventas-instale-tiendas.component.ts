@@ -11,6 +11,7 @@ import { VentasInstaleTienda } from 'src/app/interfaces/ventasInstale';
 import { VentaInstaleService } from 'src/app/services/venta-instale.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
+import { FileSaverService } from 'ngx-filesaver';
 
 
 export interface RespuestaPedidoVenta {
@@ -84,7 +85,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
     private _ventaInstale: VentaInstaleService,
     private router: Router,
     private _MatPaginatorIntl: MatPaginatorIntl,
-    // private filerSaver:FileSaverService
+    private filerSaver:FileSaverService
   ) {
     this.form = this.fb.group({
       fecha_atencion: ['', Validators.required],
@@ -227,14 +228,14 @@ this._ventaInstale.export(this.login).subscribe(res=>{
 
     const workbook = {
       Sheets:{
-        'testingsheet':worksheet
+        'Historico':worksheet
       },
-      SheetNames:['testingsheet']
+      SheetNames:['Historico']
       
     }
     const excelBuffer = XLSX.write(workbook,{bookType:'xlsx',type:'array'});
     const blobData = new Blob([excelBuffer],{type:EXCEL_TYPE});
-
+    this.filerSaver.save(blobData,"Exporte")
 
   }else{
     Swal.fire({

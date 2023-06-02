@@ -445,7 +445,7 @@
     <mat-card>
       <mat-card-content>
         <div class="consolidado">
-          Consolidado {{totalItems}}
+          Consolidado 
           &nbsp;
           <mat-icon
             [matBadge]="ok"
@@ -465,11 +465,14 @@
             matTooltip="Pendientes o en gestion"
             >question_mark</mat-icon
           >
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button (click)=" export()"><mat-icon
+          &nbsp;&nbsp;&nbsp;
+          <button class="mi_descarga"  mat-icon-button (click)=" export()"><mat-icon
+          
+          matBadgeColor="accent"
           matTooltip="Exportar"
           >cloud_download</mat-icon
         ></button>
+        
         </div>
 
         <mat-form-field>
