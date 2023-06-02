@@ -82,4 +82,17 @@ export class VentaInstaleService {
     }
     return server
   }
+
+  public export(login:any):Observable<any> {
+    const data = { 'method': 'export', 'data':{ 'login' : login}};
+    let host = location.host
+    let server;
+
+    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
+      server = this.http.post<any>(`http://200.13.250.190/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`,data);
+    }else{
+      server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
+    }
+    return server
+  }
 }

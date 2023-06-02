@@ -12,13 +12,16 @@ import { VentasInstaleTienda } from 'src/app/interfaces/ventasInstale';
 import { VentaInstaleService } from 'src/app/services/venta-instale.service';
 import Swal from 'sweetalert2';
 import { MatTableModule } from '@angular/material/table';
+import * as XLSX from 'xlsx';
+
 
 export interface RespuestaPedidoVenta {
   pedido: number,
   observacion_gestion: string,
   tipificacion: string,
   obs_tipificacion: string,
-  fecha_gestion: Date
+  fecha_gestion: Date,
+  fecha_ingreso:Date
 }
 
 @Component({
@@ -62,7 +65,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
 
   dataSource = new MatTableDataSource<RespuestaPedidoVenta>;
-  displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_gestion'];
+  displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_ingreso','fecha_gestion'];
 
   totalItems = 0;
   pageSize = 10;
@@ -82,7 +85,8 @@ export class VentasInstaleTiendasComponent implements OnInit {
     private fb: FormBuilder,
     private _ventaInstale: VentaInstaleService,
     private router: Router,
-    private _MatPaginatorIntl: MatPaginatorIntl
+    private _MatPaginatorIntl: MatPaginatorIntl,
+    // private filerSaver:FileSaverService
   ) {
     this.form = this.fb.group({
       fecha_atencion: ['', Validators.required],
@@ -213,6 +217,35 @@ export class VentasInstaleTiendasComponent implements OnInit {
   }
 
   verObservaciones() {
+    
+  }
+
+  export(){
+    const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const EXCEL_EXTENSION = '.xlsx';
+this._ventaInstale.export(this.login).subscribe(res=>{
+  if(res.data){
+    const worksheet = XLSX.utils.json_to_sheet(res.data);
+
+    const workbook = {
+      Sheets:{
+        'testingsheet':worksheet
+      },
+      SheetNames:['testingsheet']
+      
+    }
+    const excelBuffer = XLSX.write(workbook,{bookType:'xlsx',type:'array'});
+    const blobData = new Blob([excelBuffer],{type:EXCEL_TYPE});
+
+
+  }else{
+    Swal.fire({
+      icon: 'info',
+      title: 'Oops...',
+      text: 'El usuario no tiene datos para exportar',
+    })
+  }
+})
     
   }
 

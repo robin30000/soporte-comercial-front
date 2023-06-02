@@ -37,7 +37,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentasInstaleTiendasComponent } from './components/ventas-instale-tiendas/ventas-instale-tiendas.component';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { FileSaverModule } from 'ngx-filesaver';
 
 
 @NgModule({
@@ -81,6 +81,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatBadgeModule,
     MatProgressBarModule,
     CdkAccordionModule,
+    FileSaverModule
   ],
   providers: [
     //{provide:LocationStrategy,useClass:HashLocationStrategy},
