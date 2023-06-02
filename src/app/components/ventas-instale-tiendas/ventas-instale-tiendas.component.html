@@ -450,7 +450,7 @@
           <mat-icon
             [matBadge]="ok"
             matBadgeColor="primary"
-            matTooltip="Solicitudes Aprovadas"
+            matTooltip="Solicitudes Aprobadas"
             >done</mat-icon
           >&nbsp;&nbsp;&nbsp;
           <mat-icon
@@ -462,7 +462,7 @@
           <mat-icon
             [matBadge]="pend"
             matBadgeColor="accent"
-            matTooltip="Pendientes o en gestion"
+            matTooltip="Pendientes o en gestión"
             >question_mark</mat-icon
           >
           &nbsp;&nbsp;&nbsp;
@@ -500,7 +500,7 @@
           <ng-container matColumnDef="observacion_gestion">
             <th mat-header-cell *matHeaderCellDef>Observacion Seguimiento</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.observacion_gestion ? element.observacion_gestion : 'Pendiente o en gestion' }}
+              {{ element.observacion_gestion ? element.observacion_gestion : 'Pendiente o en gestión' }}
             </td>
           </ng-container>
 
@@ -526,7 +526,7 @@
           </ng-container>
 
           <ng-container matColumnDef="fecha_gestion">
-            <th mat-header-cell *matHeaderCellDef>Fecha Gestion</th>
+            <th mat-header-cell *matHeaderCellDef>Fecha Gestión</th>
             <td mat-cell *matCellDef="let element">
               {{ element.fecha_gestion }}
             </td>
@@ -568,7 +568,7 @@
                   [attr.id]="'accordion-body-' + index"
                   [attr.aria-labelledby]="'accordion-header-' + index"
                 >
-                  <span>Respuesta: {{ item.obs_tipificacion ? item.obs_tipificacion : 'Pendiente o en gestion' }}</span> <br />
+                  <span>Respuesta: {{ item.obs_tipificacion ? item.obs_tipificacion : 'Pendiente o en gestión' }}</span> <br />
                   <span>Fecha: {{ item.fecha_gestion }}</span> <br />
                 </div>
               </cdk-accordion-item>
