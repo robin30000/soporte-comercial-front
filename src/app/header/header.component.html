@@ -2,22 +2,22 @@
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
   <span class="example-spacer"></span>
 
-  <button class="docs-navbar-header-item-selected" *ngIf="perfil == 1 || perfil == 4" mat-button routerLink="/ConsultaPedido"
+  <button class="docs-navbar-header-item-selected" *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-button routerLink="/ConsultaPedido"
     matTooltip="Consulta equipos instalados">
     Visitas Terreno
   </button>
-  <button *ngIf="perfil == 1 || perfil == 4" mat-button routerLink="/ConsultaEquiposInstalados"
+  <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-button routerLink="/ConsultaEquiposInstalados"
     matTooltip="Consulta equipos instalados">
     Consulta equipos instalados
   </button>
-  <button *ngIf="perfil == 3 || perfil == 4" mat-button routerLink="/ventas-instale-tiendas" matTooltip="Venta Instale">
+  <button *ngIf="perfil == 3 || perfil == 4 || perfil == 11" mat-button routerLink="/ventas-instale-tiendas" matTooltip="Venta Instale">
     Venta Instale
   </button>
-  <button *ngIf="perfil == 2" mat-button routerLink="/Ventas" matTooltip="Ventas">
-    Ventas
+  <button *ngIf="perfil == 2 || perfil == 11" mat-button routerLink="/Ventas" matTooltip="Gescom">
+    Gescom
   </button>
   <span class="example-spacer"></span>
-  <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar Session">
+  <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar sesión">
     <span class="example-spacer"></span>
     <mat-icon>logout</mat-icon>
   </button>
@@ -29,19 +29,19 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button *ngIf="perfil == 1 || perfil == 4" mat-menu-item routerLink="/ConsultaPedido" class="active">
+    <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-menu-item routerLink="/ConsultaPedido" class="active">
       Visitas Terreno
     </button>
-    <button *ngIf="perfil == 1 || perfil == 4" mat-menu-item routerLink="/ConsultaEquiposInstalados">
+    <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-menu-item routerLink="/ConsultaEquiposInstalados">
       Consulta equipos instalados
     </button>
-    <button *ngIf="perfil == 3 || perfil == 4" mat-menu-item routerLink="/ventas-instale-tiendas">
+    <button *ngIf="perfil == 3 || perfil == 4 || perfil == 11" mat-menu-item routerLink="/ventas-instale-tiendas">
       Venta Instale
     </button>
-    <button *ngIf="perfil == 2" mat-menu-item routerLink="/Ventas">
-      Ventas
+    <button *ngIf="perfil == 2 || perfil == 11" mat-menu-item routerLink="/Ventas">
+      Gescom
     </button>
-    <button mat-menu-item (click)="CerrarSesion()">Cerrar Session</button>
+    <button mat-menu-item (click)="CerrarSesion()">Cerrar sesión</button>
   </mat-menu>
 
   <span class="example-spacer"></span>

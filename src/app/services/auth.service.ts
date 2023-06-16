@@ -20,15 +20,6 @@ export class AuthService {
   }
   login(user: Object,): Observable<any> {
     let data = { method: 'Login', data: user }
-
-    let host = location.host;
-    let server;
-    if(host === 'adsl200-13-250-190.epm.net.co' || host === '200.13.250.190'){
-      server = this.http.post<any>(`http://200.13.250.190/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
-    }else{
-      server = this.http.post<any>(`http://10.100.88.2/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
-    }
-    return server
-
+    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
   }
 }

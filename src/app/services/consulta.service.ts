@@ -1,29 +1,37 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, async, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultaService {
   httpOptions: object;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json'
+        'Content-Type': 'application/json'
       })
     }
   }
 
-  consultaVisitasTerreno(pedido:string, cedula:string): Observable<any>{
-    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/visitas-terreno/${pedido}/${cedula}`);
+  consultaVisitasTerreno(pedido: string, cedula: string): Observable<any> {
+    const data = { 'method': 'VisitasTerreno', 'data': { 'pedido': pedido, 'cedula': cedula } };
+    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/consultasCtrl.php`, data);;
   }
 
-  consultaEquiposInstalados(pedido:string): Observable<any>{
-    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/equipos/${pedido}`);
+  consultaEquiposInstalados(pedido: string): Observable<any> {
+    const data = { 'method': 'EquiposInstalados', 'data': { 'pedido': pedido } };
+    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/consultasCtrl.php`, data);;
   }
 
-  consultaIncompleto(pedido:string): Observable<any>{
-    return this.http.get<any>(`http://10.100.66.254:8080/visitas-terreno/api/incompleto/${pedido}`);
+  consultaIncompleto(pedido: string): Observable<any> {
+    const data = { 'method': 'Incompleto', 'data': { 'pedido': pedido } };
+    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/consultasCtrl.php`, data);;
+  }
+
+  consultaSupervisor(cedula: string): Observable<any> {
+    const data = { 'method': 'Supervisor', 'data': { 'cedula': cedula } };
+    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/consultasCtrl.php`, data);;
   }
 }

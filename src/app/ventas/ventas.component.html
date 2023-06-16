@@ -3,6 +3,7 @@
 <div class="body">
   <div class="form">
     <form [formGroup]="form" (ngSubmit)="buscar()">
+      <br>
       <h1>Consultar información del cliente</h1>
       <mat-form-field class="ancho" appearance="fill">
         <mat-label>Pedido UNE</mat-label>
@@ -40,9 +41,21 @@
             <th scope="row">Guión</th>
             <td>{{Guion}}</td>
           </tr>
+          <tr >
+            <th scope="row">Tecnico</th>
+            <td>{{datos[0].NombreTecnico}}</td>
+          </tr>
           <tr *ngIf="observe" >
             <th scope="row">Observacion Tecnico</th>
             <td>{{Observacion}}</td>
+          </tr>
+          <tr >
+            <th scope="row">Supervisor</th>
+            <td>{{supervisor[0].NOMBRE_FUNCIONARIO}}</td>
+          </tr>
+          <tr >
+            <th scope="row">Celular Supervisor</th>
+            <td>{{supervisor[0].CELULAR}}</td>
           </tr>
         </tbody>
       </table>
