@@ -300,8 +300,6 @@ export class VentasComponent implements OnInit {
         }
 
         this.consulta.consultaSupervisor(res[0]['CedulaTecnico']).subscribe((res) => {
-
-          console.log(res);
           this.supervisor = res;
         })
         this.datos = res;

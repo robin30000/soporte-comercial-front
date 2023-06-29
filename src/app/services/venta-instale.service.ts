@@ -8,42 +8,42 @@ import { Observable } from 'rxjs';
 export class VentaInstaleService {
 
   httpOptions: object;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json'
+        'Content-Type': 'application/json'
       })
     }
   }
   guardaPedido(pedido: VentasInstaleTienda): Observable<any> {
     const data = { 'method': 'guardaPedidoVentaInstale', 'data': pedido }
-    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
+    return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
   }
 
   buscaPedido(pedido: string): Observable<any> {
-    const data = {'method' : 'consultaPedido', 'data' : pedido}
-    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
+    const data = { 'method': 'consultaPedido', 'data': pedido }
+    return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/visitasTerrenoCtrl.php`, data);
 
   }
 
   public respuestasPedidos(pageNumber: Number, pageSize: Number, login: string, pedido: Number): Observable<any> {
-    const data = { 'method': 'respuestasPedidos', 'data':{ 'login' : login, 'pageNumber' : pageNumber, 'pageSize': pageSize ,'pedido': pedido}};
+    const data = { 'method': 'respuestasPedidos', 'data': { 'login': login, 'pageNumber': pageNumber, 'pageSize': pageSize, 'pedido': pedido } };
 
     return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
   }
 
   public validaTecnico(documento_tecnico: any): Observable<any> {
-    const data = { 'method': 'documento_tecnico', 'data':{ 'documento_tecnico' : documento_tecnico}};
+    const data = { 'method': 'documento_tecnico', 'data': { 'documento_tecnico': documento_tecnico } };
     return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
   }
 
-  public observacionesDespacho():Observable<any>{
-    const data = { 'method': 'observaciones'};
+  public observacionesDespacho(): Observable<any> {
+    const data = { 'method': 'observaciones' };
     return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
   }
 
-  public export(login:any):Observable<any> {
-    const data = { 'method': 'export', 'data':{ 'login' : login}};
+  public export(login: any): Observable<any> {
+    const data = { 'method': 'export', 'data': { 'login': login } };
     return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/ventaInstaleCtrl.php`, data);
   }
 }

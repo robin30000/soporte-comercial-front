@@ -20,6 +20,6 @@ export class AuthService {
   }
   login(user: Object,): Observable<any> {
     let data = { method: 'Login', data: user }
-    return this.http.post<any>(`https://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
+    return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
   }
 }
