@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ConsultaService } from '../services/consulta.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-equipos-instalados',
@@ -23,7 +23,7 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
   dataRepair: any[] = []
   dataInstall: any[] = []
   perfil: any;
-  constructor(private fb: FormBuilder, private consulta: ConsultaService,private router:Router) {
+  constructor(private fb: FormBuilder, private consulta: ConsultaService, private router: Router) {
     this.form = this.fb.group({
       'Pedido': [''],
     })
@@ -32,22 +32,11 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('user')==null){
+    if (localStorage.getItem('user') == null) {
       localStorage.clear();
       this.router.navigate(['login'])
     }
 
-    this.perfil  = localStorage.getItem('perfil')
-    if(this.perfil == 2){
-      this.router.navigate(['Ventas'])
-    }
-    if (this.perfil == 3) {
-      this.router.navigate(['ventas-instale-tiendas'])
-    }
-
-    if(this.perfil == '' && this.perfil == null){
-      this.router.navigate(['login'])
-    }
   }
 
   buscar() {
@@ -109,10 +98,10 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
         }
       }
     })
-    this.dataInstall=[]
-    this.dataRepair=[]
-    this.dataTralado=[]
-    this.dataCollect=[]
+    this.dataInstall = []
+    this.dataRepair = []
+    this.dataTralado = []
+    this.dataCollect = []
     this.aparece = false;
     this.validar = false;
     this.install = false;

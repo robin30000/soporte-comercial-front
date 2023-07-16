@@ -23,6 +23,7 @@ export class VentasComponent implements OnInit {
   primarydate: any;
   perfil: any;
   supervisor: any;
+  aparece1: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,18 +40,6 @@ export class VentasComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('user') == null) {
       localStorage.clear();
-      this.router.navigate(['login']);
-    }
-    this.perfil = localStorage.getItem('perfil');
-
-    if (this.perfil == 1 || this.perfil == 4) {
-      this.router.navigate(['ConsultaPedido']);
-    }
-    if (this.perfil == 3) {
-      this.router.navigate(['ventas-instale-tiendas']);
-    }
-
-    if (this.perfil == '' && this.perfil == null) {
       this.router.navigate(['login']);
     }
   }
@@ -74,6 +63,8 @@ export class VentasComponent implements OnInit {
     }
 
     this.consulta.consultaVisitasTerreno(pedido, 'vacio').subscribe((res) => {
+
+
       let Estado = res[0]['Name'];
       if (res == null || res == '') {
         this.aparece = false;
@@ -299,9 +290,13 @@ export class VentasComponent implements OnInit {
           this.Guion = 'Estado desconocido';
         }
 
-        this.consulta.consultaSupervisor(res[0]['CedulaTecnico']).subscribe((res) => {
-          this.supervisor = res;
-        })
+        if (res[0]['NombreTecnico'] != null) {
+          this.consulta.consultaSupervisor(res[0]['CedulaTecnico']).subscribe((res) => {
+            this.aparece1 = true;
+            this.supervisor = res;
+          })
+        }
+
         this.datos = res;
       }
     });

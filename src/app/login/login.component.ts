@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
           title: 'Oops...',
           text: 'Usuario y/o Contraseña no Validos',
         })
-      }else if (res[1] == 200) {
+      } else if (res[1] == 200) {
         let perfil = res[2][0]['Perfil'];
         localStorage.setItem('perfil', perfil)
         if (perfil == 1) {
@@ -74,7 +74,11 @@ export class LoginComponent implements OnInit {
         } else if (perfil == 4) {
           localStorage.setItem('user', this.loginForm.value.username)
           this.router.navigate(['ConsultaPedido']);
-        }else{
+        } else if (perfil == 5) {
+          localStorage.setItem('user', this.loginForm.value.username)
+          this.router.navigate(['ventas-instale-tiendas']);
+        }
+        else {
           localStorage.setItem('user', this.loginForm.value.username)
           this.router.navigate(['ConsultaPedido']);
         }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/visitas-terreno/api'
+  baseUrl: 'http://10.100.88.2/visitas-terreno/api'
 };
 
 /*

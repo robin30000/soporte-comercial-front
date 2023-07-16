@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseURL } from '../../shared/baseURL';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,6 @@ export class AuthService {
   }
   login(user: Object,): Observable<any> {
     let data = { method: 'Login', data: user }
-    return this.http.post<any>(`http://seguimientopedido.tigo.com.co/visitas-terreno/api/Controllers/Auth.php`, data, this.httpOptions);
+    return this.http.post<any>(`${baseURL}/Controllers/Auth.php`, data, this.httpOptions);
   }
 }

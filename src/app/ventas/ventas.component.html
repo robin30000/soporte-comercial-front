@@ -49,11 +49,11 @@
             <th scope="row">Observacion Tecnico</th>
             <td>{{Observacion}}</td>
           </tr>
-          <tr >
+          <tr *ngIf="aparece1">
             <th scope="row">Supervisor</th>
             <td>{{supervisor[0].NOMBRE_FUNCIONARIO}}</td>
           </tr>
-          <tr >
+          <tr *ngIf="aparece1">
             <th scope="row">Celular Supervisor</th>
             <td>{{supervisor[0].CELULAR}}</td>
           </tr>

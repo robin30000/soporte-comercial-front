@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'ConsultaPedido', component: ConsultaPedidoComponent },
   { path: 'ConsultaEquiposInstalados', component: ConsultaEquiposInstaladosComponent },
-  { path: 'Ventas', component: VentasComponent },
+  { path: 'Gescom', component: VentasComponent },
   { path: 'ventas-instale-tiendas', component: VentasInstaleTiendasComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

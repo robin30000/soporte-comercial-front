@@ -20,7 +20,7 @@ export interface RespuestaPedidoVenta {
   tipificacion: string,
   obs_tipificacion: string,
   fecha_gestion: Date,
-  fecha_ingreso:Date
+  fecha_ingreso: Date
 }
 
 @Component({
@@ -64,7 +64,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
 
 
   dataSource = new MatTableDataSource<RespuestaPedidoVenta>;
-  displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_ingreso','fecha_gestion'];
+  displayedColumns: string[] = ['pedido', 'observacion_gestion', 'tipificacion', 'obs_tipificacion', 'fecha_ingreso', 'fecha_gestion'];
 
   totalItems = 0;
   pageSize = 10;
@@ -85,7 +85,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
     private _ventaInstale: VentaInstaleService,
     private router: Router,
     private _MatPaginatorIntl: MatPaginatorIntl,
-    private filerSaver:FileSaverService
+    private filerSaver: FileSaverService
   ) {
     this.form = this.fb.group({
       fecha_atencion: ['', Validators.required],
@@ -98,7 +98,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
       region: ['', Validators.required],
       documento_tecnico: [''],
       nombre_tecnico: [''],
-      categoria:['']
+      categoria: ['']
     });
     this.minDate = new Date();
   }
@@ -112,12 +112,7 @@ export class VentasInstaleTiendasComponent implements OnInit {
     this.login = localStorage.getItem('user');
 
     this.perfil = localStorage.getItem('perfil')
-    if (this.perfil == 2) {
-      this.router.navigate(['Ventas'])
-    }
-    if (this.perfil == 1) {
-      this.router.navigate(['ConsultaPedido'])
-    }
+
 
     if (this.perfil == '' && this.perfil == null) {
       this.router.navigate(['login'])
@@ -157,14 +152,14 @@ export class VentasInstaleTiendasComponent implements OnInit {
         for (let i = 0; i < this.listPedido.length; i++) {
           if (this.listPedido[i].tipificacion == 'Ok') {
             this.ok++;
-          } 
+          }
           if (this.listPedido[i].tipificacion == 'Rechazada') {
             this.error++;
-          } 
+          }
 
           if (this.listPedido[i].tipificacion == null) {
             this.pend++;
-          } 
+          }
         }
       });
   }
@@ -179,15 +174,15 @@ export class VentasInstaleTiendasComponent implements OnInit {
       for (let i = 0; i < this.listPedido.length; i++) {
         if (this.listPedido[i].tipificacion == 'Ok') {
           this.ok++;
-        } 
-        
+        }
+
         if (this.listPedido[i].tipificacion == 'Rechazada') {
           this.error++;
-        } 
+        }
 
         if (this.listPedido[i].tipificacion == null) {
           this.pend++;
-        } 
+        }
       }
     });
   }
@@ -216,36 +211,36 @@ export class VentasInstaleTiendasComponent implements OnInit {
   }
 
   verObservaciones() {
-    
+
   }
 
-  export(){
+  export() {
     const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const EXCEL_EXTENSION = '.xlsx';
-this._ventaInstale.export(this.login).subscribe(res=>{
-  if(res.data){
-    const worksheet = XLSX.utils.json_to_sheet(res.data);
+    this._ventaInstale.export(this.login).subscribe(res => {
+      if (res.data) {
+        const worksheet = XLSX.utils.json_to_sheet(res.data);
 
-    const workbook = {
-      Sheets:{
-        'Historico':worksheet
-      },
-      SheetNames:['Historico']
-      
-    }
-    const excelBuffer = XLSX.write(workbook,{bookType:'xlsx',type:'array'});
-    const blobData = new Blob([excelBuffer],{type:EXCEL_TYPE});
-    this.filerSaver.save(blobData,"Exporte")
+        const workbook = {
+          Sheets: {
+            'Historico': worksheet
+          },
+          SheetNames: ['Historico']
 
-  }else{
-    Swal.fire({
-      icon: 'info',
-      title: 'Oops...',
-      text: 'El usuario no tiene datos para exportar',
+        }
+        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
+        this.filerSaver.save(blobData, "Exporte")
+
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: 'Oops...',
+          text: 'El usuario no tiene datos para exportar',
+        })
+      }
     })
-  }
-})
-    
+
   }
 
   buscaPedidoVenta() {
@@ -258,10 +253,10 @@ this._ventaInstale.export(this.login).subscribe(res=>{
       })
     } else {
       this._ventaInstale.buscaPedido(pedido)
-        .subscribe((response) => {  
+        .subscribe((response) => {
           if (response.length) {
             if (response[0]['estado'] == 'Finalizada' || response[0]['estado'] == 'In Jeopardy' || response[0]['estado'] == 'Incompleto' || response[0]['estado'] == 'Pendiente' ||
-            response[0]['estado'] == 'Rechazado' || response[0]['estado'] == 'Suspendido' || response[0]['estado'] == 'Suspendido-Abierto' || response[0]['estado'] == 'Cancelado') {
+              response[0]['estado'] == 'Rechazado' || response[0]['estado'] == 'Suspendido' || response[0]['estado'] == 'Suspendido-Abierto' || response[0]['estado'] == 'Cancelado') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
