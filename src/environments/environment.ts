@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://10.100.88.2/visitas-terreno/api'
+  //baseUrl: 'http://10.100.88.2/visitas-terreno/api'
+  baseUrl: 'https://seguimientopedido.tigo.com.co/soportecomercial/api'
 };
 
 /*
