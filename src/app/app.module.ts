@@ -8,7 +8,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
-import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {
+  CommonModule,
+  HashLocationStrategy,
+  LocationStrategy,
+  PathLocationStrategy,
+} from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -32,13 +37,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-
+import { MatDividerModule } from '@angular/material/divider';
 
 import { VentasComponent } from './ventas/ventas.component';
 import { VentasInstaleTiendasComponent } from './components/ventas-instale-tiendas/ventas-instale-tiendas.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FileSaverModule } from 'ngx-filesaver';
-
+import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
+import { ModalCreaUsuarioComponent } from './components/crear-usuario/modal-crea-usuario/modal-crea-usuario.component';
+import { PerfilMenuComponent } from './components/perfil-menu/perfil-menu.component';
+import { ModalPerfilMenuComponent } from './components/perfil-menu/modal-perfil-menu/modal-perfil-menu.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +57,10 @@ import { FileSaverModule } from 'ngx-filesaver';
     LoginComponent,
     VentasComponent,
     VentasInstaleTiendasComponent,
+    CrearUsuarioComponent,
+    ModalCreaUsuarioComponent,
+    PerfilMenuComponent,
+    ModalPerfilMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,12 +93,14 @@ import { FileSaverModule } from 'ngx-filesaver';
     MatBadgeModule,
     MatProgressBarModule,
     CdkAccordionModule,
-    FileSaverModule
+    FileSaverModule,
+    MatDividerModule,
   ],
   providers: [
     //{provide:LocationStrategy,useClass:HashLocationStrategy},
-    Location, { provide: LocationStrategy, useClass: PathLocationStrategy }
+    Location,
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

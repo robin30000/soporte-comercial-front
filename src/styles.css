@@ -1,15 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"; */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.primary{
-    background-color: #102b58;
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.buttonPage{
-    height: 50px;
-    background-color: #102b58;
-    border-radius: 0px !important;
-    color: #f0f0f0;
+.primary {
+  background-color: #102b58;
+}
+
+.buttonPage {
+  height: 50px;
+  background-color: #102b58;
+  border-radius: 0px !important;
+  color: #f0f0f0;
+}
+
+.swal2-styled.swal2-confirm {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
 }

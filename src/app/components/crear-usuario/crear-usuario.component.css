@@ -1,3 +1,12 @@
+/* mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  button {
+    margin-top: 15px;
+  } */
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -6,7 +15,7 @@
   width: 90%;
 }
 
-.ancho_busca{
+.ancho_busca {
   width: 80%;
 }
 
@@ -32,8 +41,8 @@
 }
 
 /* .mat-form-field-infix .ng-tns-c30-2{
-    display: contents;
-} */
+      display: contents;
+  } */
 
 .mat-form-field-infix {
   display: contents !important;
@@ -47,9 +56,9 @@ mat-form-field {
   width: 100%;
 }
 
-
 .consolidado {
   display: flex;
+  justify-content: center;
 }
 
 .hidden {
@@ -66,7 +75,7 @@ mat-form-field {
   border: solid 1px #ccc;
 }
 
-.example-accordion-item+.example-accordion-item {
+.example-accordion-item + .example-accordion-item {
   border-top: none;
 }
 
@@ -115,12 +124,12 @@ mat-form-field {
   display: flex;
 }
 
-.error{
+.error {
   color: rgb(175, 51, 51);
   margin-left: 5px;
 }
 
-mat-hint{
+mat-hint {
   background-color: rgb(255, 220, 220) !important;
   width: 100%;
   padding: 5px 0 5px 0;
@@ -128,27 +137,58 @@ mat-hint{
 }
 
 #lista1 {
-  font-size:16px;
+  font-size: 16px;
 }
 .separador {
   font-size: 20px;
 }
 #lista1 li {
-   display:inline;
-   padding-left:3px;
-   padding-right:3px;
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
 }
-[matBadgeColor=accent].mat-badge.mat-badge-content {
-  background: #f1bf28;
-  color: #fff;
+
+[matBadgeColor="accent"].mat-badge-content {
+    background: #f1bf28;
+    color: #fff;
 }
-/* [matBadgeColor=accent]{
-  .mat-badge-content{
-      background : #f1bf28;
-      color: #fff;
+
+/* [matBadgeColor="accent"] {
+  .mat-badge-content {
+    background: #f1bf28;
+    color: #fff;
   }
 } */
 
-.mi_descarga{
+.mi_descarga {
   margin-left: 80%;
 }
+
+.center {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.mat-header-cell,
+.mat-sort-header-container,
+.mat-sort-header {
+  text-align: center !important;
+  justify-content: center !important;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.mat-cell {
+  text-align: center !important;
+}
+
+
+.cdk-overlay-pane{
+  width: 800px!important;
+}
+
+.ng-star-inserted{
+  width: 800px;
+}
+

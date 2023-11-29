@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VentasInstaleTienda } from '../interfaces/ventasInstale';
+import { VentasInstaleTienda } from '../interfaces/interfaces';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { baseURL } from '../../shared/baseURL';

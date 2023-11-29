@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<br />
+
+<div style="padding: 20px">
+  <h2>Listado menu - permiso perfil</h2>
+  <mat-grid-list cols="3" >
+    <mat-grid-tile colspan="1">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8 "
+        matSort
+        col style="width: 100%"
+      >
+        <ng-container matColumnDef="Menu">
+          <th mat-header-cell *matHeaderCellDef>Menu</th>
+          <td mat-cell *matCellDef="let element">{{ element.menu }}</td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="Estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.estado }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Acción">
+          <th mat-header-cell *matHeaderCellDef>Acción</th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="editaMenu(element.id, element.estado)">
+                <mat-icon matBadgeColor="primary" matTooltip="Editar"
+                  >edit</mat-icon
+                >
+              </button>
+          </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" >
+      <table [style.height.px]="400"
+        mat-table
+        [dataSource]="dataSourcePerfil"
+        class="mat-elevation-z8"
+        matSort
+        col
+        style="width: 90%"
+      >
+        <ng-container matColumnDef="Perfil">
+          <th mat-header-cell *matHeaderCellDef>Perfil</th>
+          <td mat-cell *matCellDef="let element">{{ element.perfil }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.estado }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Acción">
+          <th mat-header-cell *matHeaderCellDef>Acción</th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="editaPerfil(element.id)">
+                <mat-icon matBadgeColor="primary"
+                  >edit</mat-icon
+                >
+              </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsPerfil"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsPerfil"></tr>
+      </table>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -53,35 +53,20 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(login).subscribe(res => {
-      if (res[1] == 200400) {
+      if (res.state) {
+        let perfil = res.data.Perfil;
+        localStorage.setItem('perfil', perfil);
+        localStorage.setItem('user', this.loginForm.value.username);
+        localStorage.setItem('menu', JSON.stringify(res.data.menu));
+
+        this.router.navigate(['ConsultaPedido']);
+      }else{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Usuario y/o Contraseña no Validos',
+          text: res.msj,
+          timer: 4000
         })
-      } else if (res[1] == 200) {
-        let perfil = res[2][0]['Perfil'];
-        localStorage.setItem('perfil', perfil)
-        if (perfil == 1) {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ConsultaPedido']);
-        } else if (perfil == 2) {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['Ventas']);
-        } else if (perfil == 3) {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ventas-instale-tiendas']);
-        } else if (perfil == 4) {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ConsultaPedido']);
-        } else if (perfil == 5) {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ventas-instale-tiendas']);
-        }
-        else {
-          localStorage.setItem('user', this.loginForm.value.username)
-          this.router.navigate(['ConsultaPedido']);
-        }
       }
     })
   }

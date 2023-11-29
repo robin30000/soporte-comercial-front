@@ -51,6 +51,7 @@ export class ConsultaEquiposInstaladosComponent implements OnInit {
         title: 'Oops...',
         text: 'Ingresa un dato',
       })
+      return;
     } else {
       this.validar = false;
     }

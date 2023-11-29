@@ -1,3 +1,4 @@
+import { CrearUsuarioComponent } from './components/crear-usuario/crear-usuario.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConsultaEquiposInstaladosComponent } from './consulta-equipos-instalados/consulta-equipos-instalados.component';
@@ -5,22 +6,28 @@ import { ConsultaPedidoComponent } from './consulta-pedido/consulta-pedido.compo
 import { LoginComponent } from './login/login.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentasInstaleTiendasComponent } from './components/ventas-instale-tiendas/ventas-instale-tiendas.component';
+import { PerfilMenuComponent } from './components/perfil-menu/perfil-menu.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'ConsultaPedido', component: ConsultaPedidoComponent },
-  { path: 'ConsultaEquiposInstalados', component: ConsultaEquiposInstaladosComponent },
+  {
+    path: 'ConsultaEquiposInstalados',
+    component: ConsultaEquiposInstaladosComponent,
+  },
   { path: 'Gescom', component: VentasComponent },
   { path: 'ventas-instale-tiendas', component: VentasInstaleTiendasComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'crear-usuario', component: CrearUsuarioComponent },
+  { path: 'perfil-menu', component: PerfilMenuComponent },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
-
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
-
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -7,21 +7,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, ObservableInput, startWith, switchMap } from 'rxjs';
-import { VentasInstaleTienda } from 'src/app/interfaces/ventasInstale';
+import { RespuestaPedidoVenta, VentasInstaleTienda } from 'src/app/interfaces/interfaces';
 import { VentaInstaleService } from 'src/app/services/venta-instale.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { FileSaverService } from 'ngx-filesaver';
 
-
-export interface RespuestaPedidoVenta {
-  pedido: number,
-  observacion_gestion: string,
-  tipificacion: string,
-  obs_tipificacion: string,
-  fecha_gestion: Date,
-  fecha_ingreso: Date
-}
 
 @Component({
   selector: 'app-ventas-instale-tiendas',

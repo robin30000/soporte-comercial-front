@@ -1,22 +1,113 @@
+<!-- <mat-toolbar color="primary" *ngIf="desired_columns">
+  <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
+  <span class="example-spacer"></span>
+
+  <button
+    *ngIf="perfil == 1 || perfil == 4 || perfil == 11"
+    mat-button
+    routerLinkActive="selected"
+    (click)="selectMenu('ConsultaPedido')"
+    routerLink="/ConsultaPedido"
+    matTooltip="Visitas Terreno"
+  >
+    Visitas Terreno
+  </button>
+  <button
+    *ngIf="perfil == 1 || perfil == 4 || perfil == 11"
+    [class.selected]="selectedMenu === 'ConsultaEquiposInstalados'"
+    mat-button
+    routerLinkActive="selected"
+    (click)="selectMenu('ConsultaEquiposInstalados')"
+    routerLink="/ConsultaEquiposInstalados"
+    matTooltip="Consulta equipos instalados"
+  >
+    Consulta equipos instalados
+  </button>
+  <button
+    *ngIf="perfil == 3 || perfil == 4 || perfil == 5 || perfil == 11"
+    mat-button
+    routerLinkActive="selected"
+    (click)="selectMenu('ventas-instale-tiendas')"
+    routerLink="/ventas-instale-tiendas"
+    matTooltip="Venta Instale"
+  >
+    Venta Instale
+  </button>
+  <button
+    *ngIf="perfil == 2 || perfil == 5 || perfil == 11"
+    [class.selected]="selectedMenu == 'Gescom'"
+    mat-button
+    routerLinkActive="selected"
+    (click)="selectMenu('Gescom')"
+    routerLink="/Gescom"
+    matTooltip="Gescom"
+  >
+    Gescom
+  </button>
+
+  <button
+    mat-button
+    [matMenuTriggerFor]="menu"
+  >
+    Admin
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      routerLink="/crear-usuario"
+    >
+      Usuarios
+    </button>
+    <button
+      mat-menu-item
+      routerLink="/perfil-menu"
+    >
+      Perfile-menu
+    </button>
+  </mat-menu>
+
+  <span class="example-spacer"></span>
+  <span style="font-size: 0.9rem">{{ user }}</span>
+  <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar sesión">
+    <span class="example-spacer"></span>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar> -->
+
 <mat-toolbar color="primary" *ngIf="desired_columns">
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
   <span class="example-spacer"></span>
 
-  <button class="docs-navbar-header-item-selected" *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-button routerLink="/ConsultaPedido"
-    matTooltip="Visitas Terreno">
-    Visitas Terreno
-  </button>
-  <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-button routerLink="/ConsultaEquiposInstalados"
-    matTooltip="Consulta equipos instalados">
-    Consulta equipos instalados
-  </button>
-  <button *ngIf="perfil == 3 || perfil == 4 || perfil == 5 || perfil == 11" mat-button routerLink="/ventas-instale-tiendas" matTooltip="Venta Instale">
-    Venta Instale
-  </button>
-  <button *ngIf="perfil == 2 || perfil == 5 || perfil == 11" mat-button routerLink="/Gescom" matTooltip="Gescom">
-    Gescom
-  </button>
+  <div *ngFor="let item of menuItems">
+    <ng-container *ngIf="!item.submenu">
+      <!-- Menú Principal -->
+      <button
+        mat-button
+        routerLinkActive="selected"
+        (click)="selectMenu(item.route_principal)"
+        [matMenuTriggerFor]="menu"
+        *ngIf="!item.submenu"
+        [routerLink]="item.route_principal"
+      >
+        {{ item.menu_principal }}
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          routerLinkActive="selected"
+          *ngFor="let submenu of item.submenus"
+          (click)="selectMenu(submenu.route_submenu)"
+          [routerLink]="submenu.route_submenu"
+        >
+          {{ submenu.submenu }}
+        </button>
+      </mat-menu>
+    </ng-container>
+  </div>
+
   <span class="example-spacer"></span>
+  <span style="font-size: 0.9rem">{{ user }}</span>
   <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar sesión">
     <span class="example-spacer"></span>
     <mat-icon>logout</mat-icon>
@@ -24,25 +115,73 @@
 </mat-toolbar>
 
 <mat-toolbar color="primary" *ngIf="!desired_columns">
-  <button mat-button [matMenuTriggerFor]="menu">
+  <button mat-button [matMenuTriggerFor]="menu1">
     <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu1="matMenu">
+    <div *ngFor="let item of menuItems">
+      <ng-container *ngIf="!item.submenu">
+        <!-- Menú Principal -->
+        <button
+          mat-button
+          routerLinkActive="selected"
+          (click)="selectMenu(item.route_principal)"
+          [matMenuTriggerFor]="menu2"
+          *ngIf="!item.submenu"
+          [routerLink]="item.route_principal"
+        >
+          {{ item.menu_principal }}
+        </button>
 
-  <mat-menu #menu="matMenu">
-    <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-menu-item routerLink="/ConsultaPedido" class="active">
-      Visitas Terreno
-    </button>
-    <button *ngIf="perfil == 1 || perfil == 4 || perfil == 11" mat-menu-item routerLink="/ConsultaEquiposInstalados">
-      Consulta equipos instalados
-    </button>
-    <button *ngIf="perfil == 3 || perfil == 4  || perfil == 5  || perfil == 11" mat-menu-item routerLink="/ventas-instale-tiendas">
-      Venta Instale
-    </button>
-    <button *ngIf="perfil == 2|| perfil == 5  || perfil == 11" mat-menu-item routerLink="/Gescom">
-      Gescom
-    </button>
+        <mat-menu #menu2="matMenu">
+          <button
+            mat-menu-item
+            routerLinkActive="selected"
+            *ngFor="let submenu of item.submenus"
+            (click)="selectMenu(submenu.route_submenu)"
+            [routerLink]="submenu.route_submenu"
+          >
+            {{ submenu.submenu }}
+          </button>
+        </mat-menu>
+      </ng-container>
+    </div>
     <button mat-menu-item (click)="CerrarSesion()">Cerrar sesión</button>
   </mat-menu>
+
+  <!-- <mat-menu #menu="matMenu">
+    <button
+      *ngIf="perfil == 1 || perfil == 4 || perfil == 11"
+      mat-menu-item
+      routerLink="/ConsultaPedido"
+      class="active"
+    >
+      Visitas Terreno
+    </button>
+    <button
+      *ngIf="perfil == 1 || perfil == 4 || perfil == 11"
+      mat-menu-item
+      routerLink="/ConsultaEquiposInstalados"
+    >
+      Consulta equipos instalados
+    </button>
+    <button
+      *ngIf="perfil == 3 || perfil == 4 || perfil == 5 || perfil == 11"
+      mat-menu-item
+      routerLink="/ventas-instale-tiendas"
+    >
+      Venta Instale
+    </button>
+    <button
+      *ngIf="perfil == 2 || perfil == 5 || perfil == 11"
+      mat-menu-item
+      routerLink="/Gescom"
+    >
+      Gescom
+    </button>
+
+    <button mat-menu-item (click)="CerrarSesion()">Cerrar sesión</button>
+  </mat-menu> -->
 
   <span class="example-spacer"></span>
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
