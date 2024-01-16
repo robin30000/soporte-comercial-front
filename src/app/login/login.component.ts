@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('perfil', perfil);
         localStorage.setItem('user', this.loginForm.value.username);
         localStorage.setItem('menu', JSON.stringify(res.data.menu));
-console.log(perfil);
 
         switch (perfil) {
           case '2':

@@ -3,59 +3,66 @@
 <div class="body">
   <div class="form">
     <form [formGroup]="form" (ngSubmit)="buscar()">
-      <br>
+      <br />
       <h1>Consultar información del cliente</h1>
       <mat-form-field class="ancho" appearance="fill">
         <mat-label>Pedido UNE</mat-label>
-        <input matInput autocomplete="off" formControlName="Pedido">
+        <input matInput autocomplete="off" formControlName="Pedido" />
       </mat-form-field>
-      <br>
+      <br />
       <button type="submit" class="ancho button">Buscar</button>
     </form>
   </div>
 </div>
 <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
-<mat-card-content>
+<mat-card-content style="padding: 20px">
   <mat-tab-group *ngIf="aparece">
     <mat-tab label="Pedido">
       <table class="table">
         <tbody>
-          <tr >
+          <tr>
             <th scope="row">Nombre del cliente</th>
-            <td>{{datos[0].NombreCliente}}</td>
-
+            <td>{{ datos[0].NombreCliente }}</td>
           </tr>
-          <tr >
+          <tr>
             <th scope="row">Estado</th>
-            <td>{{datos[0].Name}}</td>
+            <td>{{ datos[0].Name }}</td>
           </tr>
-          <tr >
+          <tr>
             <th scope="row">Fecha</th>
-            <td>{{datos[0].FechaCita}}</td>
+            <td>{{ datos[0].FechaCita }}</td>
           </tr>
-          <tr >
+          <tr>
             <th scope="row">Hora - Franja</th>
-            <td>{{datos[0].HoraCita}}</td>
+            <td>{{ datos[0].HoraCita }}</td>
           </tr>
-          <tr >
+          <tr>
             <th scope="row">Guión</th>
-            <td>{{Guion}}</td>
+            <td>{{ Guion }}</td>
           </tr>
-          <tr >
+          <tr>
             <th scope="row">Tecnico</th>
-            <td>{{datos[0].NombreTecnico}}</td>
+            <td>{{ datos[0].NombreTecnico }}</td>
           </tr>
-          <tr *ngIf="observe" >
+          <tr *ngIf="observe">
             <th scope="row">Observacion Tecnico</th>
-            <td>{{Observacion}}</td>
+            <td>{{ Observacion }}</td>
           </tr>
           <tr *ngIf="aparece1">
             <th scope="row">Supervisor</th>
-            <td>{{supervisor[0].NOMBRE_FUNCIONARIO}}</td>
+            <td>{{ supervisor[0].NOMBRE_FUNCIONARIO }}</td>
           </tr>
           <tr *ngIf="aparece1">
             <th scope="row">Celular Supervisor</th>
-            <td>{{supervisor[0].CELULAR}}</td>
+            <td>{{ supervisor[0].CELULAR }}</td>
+          </tr>
+          <tr *ngIf="EstadoPedido">
+            <th>Obs. Amarillo</th>
+            <td>El pedido esta en estado amarillo</td>
+          </tr>
+          <tr *ngIf="MicroZona">
+            <th>Obs. Microzona</th>
+            <td>El pedido esta en una microzona no definida</td>
           </tr>
         </tbody>
       </table>

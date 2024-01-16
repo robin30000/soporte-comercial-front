@@ -24,6 +24,8 @@ export class VentasComponent implements OnInit {
   perfil: any;
   supervisor: any;
   aparece1: boolean = false;
+  EstadoPedido: boolean = false;
+  MicroZona: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -63,7 +65,7 @@ export class VentasComponent implements OnInit {
     }
 
     this.consulta.consultaVisitasTerreno(pedido, 'vacio').subscribe((res) => {
-
+      console.log(res, 'RROOO');
 
       let Estado = res[0]['Name'];
       if (res == null || res == '') {
@@ -92,6 +94,14 @@ export class VentasComponent implements OnInit {
         } else if (res[0]['FechaCita'] < fecha) {
           Estado = 'Agenda Vencida';
           res[0]['Name'] = 'Agenda Vencida';
+        }
+
+        if (res[0]['EstadoPedido'] === -1) {
+          this.EstadoPedido = true;
+        }
+
+        if (res[0]['MicroZona']) {
+          this.MicroZona = true;
         }
 
         if (Estado == 'Incompleto') {
@@ -291,10 +301,12 @@ export class VentasComponent implements OnInit {
         }
 
         if (res[0]['NombreTecnico'] != null) {
-          this.consulta.consultaSupervisor(res[0]['CedulaTecnico']).subscribe((res) => {
-            this.aparece1 = true;
-            this.supervisor = res;
-          })
+          this.consulta
+            .consultaSupervisor(res[0]['CedulaTecnico'])
+            .subscribe((res) => {
+              this.aparece1 = true;
+              this.supervisor = res;
+            });
         }
 
         this.datos = res;
