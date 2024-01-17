@@ -4,22 +4,14 @@
 
 <div style="padding: 20px">
   <h2>Listado de usuarios</h2>
-  <mat-form-field style="width: 97%;">
+  <mat-form-field style="width: 96%">
     <mat-label>Cédula</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input autocomplete="off" />
   </mat-form-field>
-  <button mat-icon-button>
-    <mat-icon matBadgeColor="accent" matTooltip="Crear usuario" md-36 (click)="openDialog()"
-      >person add</mat-icon
-    >
+  <button mat-icon-button matTooltip="Crear usuario" (click)="openDialog()">
+    <mat-icon matBadgeColor="accent" md-36>person add</mat-icon>
   </button>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="mat-elevation-z8"
-    matSort
-    
-  >
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="Cédula">
       <th mat-header-cell *matHeaderCellDef>Cédula</th>
       <td mat-cell *matCellDef="let element">{{ element.Cedula }}</td>

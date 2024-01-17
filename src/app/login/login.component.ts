@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
 export interface Usuario {
@@ -37,8 +36,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private alerts: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -47,12 +45,14 @@ export class LoginComponent implements OnInit {
   }
 
   public iniciarSesion() {
+    this.loding = true;
     let login = {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password,
     };
 
     this.authService.login(login).subscribe((res) => {
+      this.loding = false;
       if (res.state) {
         let perfil = res.data.Perfil;
         localStorage.setItem('perfil', perfil);

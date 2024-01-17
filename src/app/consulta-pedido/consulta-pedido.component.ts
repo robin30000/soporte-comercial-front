@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaService } from '../services/consulta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class ConsultaPedidoComponent implements OnInit {
   primarydate: any;
   perfil: any
 
-  constructor(private fb: FormBuilder, private consulta: ConsultaService, private router: Router, private alerts: MatSnackBar) {
+  constructor(private fb: FormBuilder, private consulta: ConsultaService, private router: Router) {
     this.form = this.fb.group({
       'Pedido': [''],
       'Cedula': ['']

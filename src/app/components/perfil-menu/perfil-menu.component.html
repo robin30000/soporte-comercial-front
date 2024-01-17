@@ -1,17 +1,17 @@
 <app-header></app-header>
 
 <br />
-
-<div style="padding: 20px">
+<br>
+<div class="container">
   <h2>Listado menu - permiso perfil</h2>
-  <mat-grid-list cols="3" >
+  <mat-grid-list cols="3" class="test" >
     <mat-grid-tile colspan="1">
       <table
         mat-table
         [dataSource]="dataSource"
         class="mat-elevation-z8 "
         matSort
-        col style="width: 100%"
+        col style="width: 80%"
       >
         <ng-container matColumnDef="Menu">
           <th mat-header-cell *matHeaderCellDef>Menu</th>
@@ -41,8 +41,8 @@
       </table>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" >
-      <table [style.height.px]="400"
+    <mat-grid-tile colspan="1">
+      <table
         mat-table
         [dataSource]="dataSourcePerfil"
         class="mat-elevation-z8"

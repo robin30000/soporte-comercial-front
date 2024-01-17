@@ -1,3 +1,18 @@
-.mat-table {
+/* .mat-table {
     overflow-y: auto;
+  } */
+
+  .mat-grid-tile-content{
+    display: flex !important;
+    align-items: flex-start!important;
+    flex-direction: column-reverse !important;
+    justify-content: flex-end !important;
+  }
+
+  .mdc-data-table__table{
+    min-width: 90% !important;
+  }
+
+  .container{
+    padding: 0, 20, 20, 20;
   }

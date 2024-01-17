@@ -3,7 +3,6 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    background-color: #f5f5f5;
 }
 
 .login{
@@ -14,10 +13,6 @@
 
 .ancho{
     width: 80%;
-}
-
-.button{
-    height: 50px;
 }
 
 .spinner{

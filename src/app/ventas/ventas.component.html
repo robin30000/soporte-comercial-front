@@ -10,7 +10,7 @@
         <input matInput autocomplete="off" formControlName="Pedido" />
       </mat-form-field>
       <br />
-      <button type="submit" class="ancho button">Buscar</button>
+      <button type="submit" class="buttonPage ancho">Buscar</button>
     </form>
   </div>
 </div>
@@ -37,15 +37,15 @@
             <td>{{ datos[0].HoraCita }}</td>
           </tr>
           <tr>
-            <th scope="row">Guión</th>
+            <th scope="row">Guion</th>
             <td>{{ Guion }}</td>
           </tr>
           <tr>
-            <th scope="row">Tecnico</th>
+            <th scope="row">Técnico</th>
             <td>{{ datos[0].NombreTecnico }}</td>
           </tr>
           <tr *ngIf="observe">
-            <th scope="row">Observacion Tecnico</th>
+            <th scope="row">Observación Técnico</th>
             <td>{{ Observacion }}</td>
           </tr>
           <tr *ngIf="aparece1">

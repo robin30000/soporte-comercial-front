@@ -16,7 +16,11 @@
 
 .start {
   margin-right: auto;
-  background-color: #102b58;
+  background-color: #00377b !important;
+}
+
+.start:hover{
+  background-color: #000055 !important;
 }
 
 .margin {
@@ -151,4 +155,12 @@ mat-hint{
 
 .mi_descarga{
   margin-left: 80%;
+}
+
+.ancho .mat-form-field-flex {
+  display: flex;
+}
+
+.ancho .mat-hint {
+  flex: 1;
 }

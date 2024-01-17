@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaService } from '../services/consulta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 @Component({
   selector: 'app-ventas',
@@ -31,7 +30,6 @@ export class VentasComponent implements OnInit {
     private fb: FormBuilder,
     private consulta: ConsultaService,
     private router: Router,
-    private alerts: MatSnackBar
   ) {
     this.form = this.fb.group({
       Pedido: [''],
@@ -65,8 +63,6 @@ export class VentasComponent implements OnInit {
     }
 
     this.consulta.consultaVisitasTerreno(pedido, 'vacio').subscribe((res) => {
-      console.log(res, 'RROOO');
-
       let Estado = res[0]['Name'];
       if (res == null || res == '') {
         this.aparece = false;

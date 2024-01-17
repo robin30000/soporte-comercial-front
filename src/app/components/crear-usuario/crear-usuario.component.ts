@@ -1,14 +1,9 @@
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { CrearUsuarioService } from './../../services/crear-usuario.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MatLegacyPaginator as MatPaginator,
-  MatLegacyPaginatorIntl as MatPaginatorIntl,
-  LegacyPageEvent as PageEvent,
-} from '@angular/material/legacy-paginator';
+
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 
 import { Router } from '@angular/router';
 import {
@@ -23,6 +18,12 @@ import {
 import { usuarios } from 'src/app/interfaces/interfaces';
 import Swal from 'sweetalert2';
 import { ModalCreaUsuarioComponent } from './modal-crea-usuario/modal-crea-usuario.component';
+import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatPaginator,
+  MatPaginatorIntl,
+  PageEvent,
+} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -107,6 +108,8 @@ export class CrearUsuarioComponent implements OnInit {
   }
 
   openDialog(): void {
+    console.log('pepepe');
+    
     this.dialog.open<string>(ModalCreaUsuarioComponent);
   }
 

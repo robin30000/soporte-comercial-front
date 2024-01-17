@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<br />
 <br />
 <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
   <mat-tab label="Solicitud">
@@ -11,11 +11,12 @@
 
     <mat-card *ngIf="datosObervaciones">
       <mat-card-content>
-
-          <ul id="lista1" >
-            <li *ngFor="let dato of datosObervaciones">{{ dato.observacion }} : {{ dato.hora }} <span class="separador"> | </span></li> 
-          </ul>
-    
+        <ul id="lista1">
+          <li *ngFor="let dato of datosObervaciones">
+            {{ dato.observacion }} : {{ dato.hora }}
+            <span class="separador"> | </span>
+          </li>
+        </ul>
       </mat-card-content>
     </mat-card>
 
@@ -65,14 +66,14 @@
 
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
           <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Documento Tecnico</mat-label>
+            <mat-label>Documento Técnico</mat-label>
             <input
               matInput
               autocomplete="off"
               formControlName="documento_tecnico"
             />
             <mat-hint>
-              <span class="error">Este Campo es opcional</span>
+              <span class="error ancho">Este Campo es opcional</span>
             </mat-hint>
           </mat-form-field>
         </mat-grid-tile>
@@ -101,7 +102,7 @@
           *ngIf="state_tecnico && state"
         >
           <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Nombre Tecnico</mat-label>
+            <mat-label>Nombre Técnico</mat-label>
             <input
               matInput
               autocomplete="off"
@@ -129,7 +130,7 @@
             appearance="fill"
             class="ancho"
           >
-            <mat-label>Fecha Atencion</mat-label>
+            <mat-label>Fecha Atención</mat-label>
             <input
               [min]="minDate"
               matInput
@@ -159,7 +160,7 @@
 
         <mat-grid-tile [colspan]="2" [rowspan]="1" *ngIf="state">
           <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Jornada Atencion</mat-label>
+            <mat-label>Jornada Atención</mat-label>
             <mat-select formControlName="jornada_atencion" required>
               <mat-option *ngFor="let item of jornada" [value]="item">
                 {{ item }}
@@ -192,7 +193,7 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="desired_columns" [rowspan]="1" *ngIf="state">
+        <mat-grid-tile [colspan]="desired_columns" [rowspan]="2" *ngIf="state">
           <mat-form-field
             appearance="fill"
             [ngClass]="desired_columns == 4 ? 'full' : 'fullM'"
@@ -220,7 +221,6 @@
         </mat-grid-tile>
       </mat-grid-list>
     </form>
-
     <form [formGroup]="form" (ngSubmit)="registrar()">
       <mat-grid-list
         cols="{{ desired_columns }}"
@@ -445,8 +445,7 @@
     <mat-card>
       <mat-card-content>
         <div class="consolidado">
-          Consolidado 
-          &nbsp;
+          Consolidado &nbsp;
           <mat-icon
             [matBadge]="ok"
             matBadgeColor="primary"
@@ -466,13 +465,11 @@
             >question_mark</mat-icon
           >
           &nbsp;&nbsp;&nbsp;
-          <button class="mi_descarga"  mat-icon-button (click)=" export()"><mat-icon
-          
-          matBadgeColor="accent"
-          matTooltip="Exportar"
-          >cloud_download</mat-icon
-        ></button>
-        
+          <button class="mi_descarga" mat-icon-button (click)="export()">
+            <mat-icon matBadgeColor="accent" matTooltip="Exportar"
+              >cloud_download</mat-icon
+            >
+          </button>
         </div>
 
         <mat-form-field>
@@ -500,7 +497,11 @@
           <ng-container matColumnDef="observacion_gestion">
             <th mat-header-cell *matHeaderCellDef>Observacion Seguimiento</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.observacion_gestion ? element.observacion_gestion : 'Pendiente o en gestión' }}
+              {{
+                element.observacion_gestion
+                  ? element.observacion_gestion
+                  : "Pendiente o en gestión"
+              }}
             </td>
           </ng-container>
 
@@ -531,8 +532,6 @@
               {{ element.fecha_gestion }}
             </td>
           </ng-container>
-
-
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -568,7 +567,15 @@
                   [attr.id]="'accordion-body-' + index"
                   [attr.aria-labelledby]="'accordion-header-' + index"
                 >
-                  <span>Respuesta: {{ item.obs_tipificacion ? item.obs_tipificacion : 'Pendiente o en gestión' }}</span> <br />
+                  <span
+                    >Respuesta:
+                    {{
+                      item.obs_tipificacion
+                        ? item.obs_tipificacion
+                        : "Pendiente o en gestión"
+                    }}</span
+                  >
+                  <br />
                   <span>Fecha: {{ item.fecha_gestion }}</span> <br />
                 </div>
               </cdk-accordion-item>
