@@ -1,9 +1,11 @@
 .selected {
-  background-color: rgba(0, 0, 85, 0.4);
   background-color: #0000001f;
-  background-color: #000055 !important;
+  
 }
 
+button:hover {
+  background-color: #000055;
+}
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -24,6 +26,5 @@ button{
   -o-border-radius: 0;
 }
 
-button:hover {
-  background-color: #0000001f;
-}
+
+
