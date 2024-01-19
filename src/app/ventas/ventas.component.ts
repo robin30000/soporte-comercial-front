@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConsultaService } from '../services/consulta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
+// es un test
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
