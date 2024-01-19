@@ -29,7 +29,7 @@ export class VentasComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private consulta: ConsultaService,
-    private router: Router,
+    private router: Router
   ) {
     this.form = this.fb.group({
       Pedido: [''],
@@ -43,6 +43,12 @@ export class VentasComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
+
+  validarPrefijo(str: string): boolean {
+    const regex = /^DEF_/;
+    return regex.test(str);
+  }
+
   buscar() {
     this.aparece = false;
     let pedido = this.form.get('Pedido')?.value;
@@ -64,7 +70,7 @@ export class VentasComponent implements OnInit {
 
     this.consulta.consultaVisitasTerreno(pedido, 'vacio').subscribe((res) => {
       let Estado = res[0]['Name'];
-      if (res == null || res == '') {
+      if (res == null) {
         this.aparece = false;
         this.loading = false;
         if (this.validar == false) {
@@ -92,12 +98,16 @@ export class VentasComponent implements OnInit {
           res[0]['Name'] = 'Agenda Vencida';
         }
 
-        if (res[0]['EstadoPedido'] === -1) {
+        if (res[0]['EstadoPedido'] === '-1') {
           this.EstadoPedido = true;
+        } else {
+          this.EstadoPedido = false;
         }
 
-        if (res[0]['MicroZona']) {
+        if (this.validarPrefijo(res[0]['MicroZona'])) {
           this.MicroZona = true;
+        } else {
+          this.MicroZona = false;
         }
 
         if (Estado == 'Incompleto') {
