@@ -28,7 +28,7 @@ import { MatMiniFabButton, MatButton, MatIconButton } from '@angular/material/bu
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatHint, MatSuffix } from '@angular/material/form-field';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { NgIf, NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -39,7 +39,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
     templateUrl: './ventas-instale-tiendas.component.html',
     styleUrls: ['./ventas-instale-tiendas.component.css'],
     standalone: true,
-    imports: [HeaderComponent, MatTabGroup, MatTab, MatGridList, MatGridTile, NgIf, MatCard, MatCardContent, NgFor, ReactiveFormsModule, MatFormField, NgClass, MatLabel, MatInput, MatMiniFabButton, MatTooltip, MatIcon, MatHint, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker, MatSelect, MatOption, MatButton, MatBadge, MatIconButton, MatTable, MatSort, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatSortHeader, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, CdkAccordion, CdkAccordionItem, MatPaginator]
+    imports: [HeaderComponent, MatTabGroup, MatTab, MatGridList, MatGridTile, MatCard, MatCardContent, ReactiveFormsModule, MatFormField, NgClass, MatLabel, MatInput, MatMiniFabButton, MatTooltip, MatIcon, MatHint, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker, MatSelect, MatOption, MatButton, MatBadge, MatIconButton, MatTable, MatSort, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatSortHeader, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, CdkAccordion, CdkAccordionItem, MatPaginator]
 })
 
 export class VentasInstaleTiendasComponent implements OnInit {

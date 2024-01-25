@@ -1,10 +1,10 @@
-import { ConsultaEquiposInstaladosComponent } from "./consulta-equipos-instalados/consulta-equipos-instalados.component";
-import { ConsultaPedidoComponent } from "./consulta-pedido/consulta-pedido.component";
+import { ConsultaEquiposInstaladosComponent } from "./components/consulta-equipos-instalados/consulta-equipos-instalados.component";
+import { ConsultaPedidoComponent } from "./components/consulta-pedido/consulta-pedido.component";
 import { CrearUsuarioComponent } from "./components/crear-usuario/crear-usuario.component";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./components/login/login.component";
 import { PerfilMenuComponent } from "./components/perfil-menu/perfil-menu.component";
 import { Routes } from "@angular/router";
-import { VentasComponent } from "./ventas/ventas.component";
+import { VentasComponent } from "./components/ventas/ventas.component";
 import { VentasInstaleTiendasComponent } from "./components/ventas-instale-tiendas/ventas-instale-tiendas.component";
 
 

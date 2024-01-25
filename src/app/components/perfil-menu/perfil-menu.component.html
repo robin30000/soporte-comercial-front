@@ -1,17 +1,18 @@
 <app-header></app-header>
 
 <br />
-<br>
+<br />
 <div class="container">
   <h2>Listado menu - permiso perfil</h2>
-  <mat-grid-list cols="3" class="test" >
+  <mat-grid-list cols="3" class="test">
     <mat-grid-tile colspan="1">
       <table
         mat-table
         [dataSource]="dataSource"
-        class="mat-elevation-z8 "
+        class="mat-elevation-z8"
         matSort
-        col style="width: 80%"
+        col
+        style="width: 80%"
       >
         <ng-container matColumnDef="Menu">
           <th mat-header-cell *matHeaderCellDef>Menu</th>
@@ -65,11 +66,9 @@
         <ng-container matColumnDef="Acción">
           <th mat-header-cell *matHeaderCellDef>Acción</th>
           <td mat-cell *matCellDef="let element">
-              <button mat-icon-button (click)="editaPerfil(element.id)">
-                <mat-icon matBadgeColor="primary"
-                  >edit</mat-icon
-                >
-              </button>
+            <button mat-icon-button (click)="editaPerfil(element.id)">
+              <mat-icon matBadgeColor="primary">edit</mat-icon>
+            </button>
           </td>
         </ng-container>
 

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ConsultaService } from '../shared/services/consulta.service';
+import { ConsultaService } from '../../shared/services/consulta.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { MatCardContent } from '@angular/material/card';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { NgIf, NgFor } from '@angular/common';
+
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { HeaderComponent } from '../shared/header/header.component';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { HeaderComponent } from '../shared/header/header.component';
     templateUrl: './consulta-pedido.component.html',
     styleUrls: ['./consulta-pedido.component.css'],
     standalone: true,
-    imports: [HeaderComponent, ReactiveFormsModule, MatFormField, MatLabel, MatInput, NgIf, MatProgressSpinner, MatCardContent, MatTabGroup, MatTab, NgFor]
+    imports: [HeaderComponent, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatProgressSpinner, MatCardContent, MatTabGroup, MatTab]
 })
 
 

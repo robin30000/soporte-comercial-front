@@ -1,35 +1,37 @@
-<mat-toolbar color="primary" *ngIf="desired_columns">
+@if (desired_columns) {
+<mat-toolbar color="primary">
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
   <span class="example-spacer"></span>
-
-  <div *ngFor="let item of menuItems">
-    <ng-container *ngIf="!item.submenu">
-      <!-- Menú Principal -->
+  @for (item of menuItems; track item) {
+  <div>
+    @if (!item.submenu) {
+    <!-- Menú Principal -->
+    @if (!item.submenu) {
+    <button
+      mat-button
+      routerLinkActive="selected"
+      (click)="selectMenu(item.route_principal)"
+      [matMenuTriggerFor]="menu"
+      [routerLink]="item.route_principal"
+    >
+      {{ item.menu_principal }}
+    </button>
+    }
+    <mat-menu #menu="matMenu">
+      @for (submenu of item.submenus; track submenu) {
       <button
-        mat-button
+        mat-menu-item
         routerLinkActive="selected"
-        (click)="selectMenu(item.route_principal)"
-        [matMenuTriggerFor]="menu"
-        *ngIf="!item.submenu"
-        [routerLink]="item.route_principal"
+        (click)="selectMenu(submenu.route_submenu)"
+        [routerLink]="submenu.route_submenu"
       >
-        {{ item.menu_principal }}
+        {{ submenu.submenu }}
       </button>
-
-      <mat-menu #menu="matMenu">
-        <button
-          mat-menu-item
-          routerLinkActive="selected"
-          *ngFor="let submenu of item.submenus"
-          (click)="selectMenu(submenu.route_submenu)"
-          [routerLink]="submenu.route_submenu"
-        >
-          {{ submenu.submenu }}
-        </button>
-      </mat-menu>
-    </ng-container>
+      }
+    </mat-menu>
+    }
   </div>
-
+  }
   <span class="example-spacer"></span>
   <span style="font-size: 0.9rem">{{ user }}</span>
   <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar sesión">
@@ -37,42 +39,45 @@
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
-
-<mat-toolbar color="primary" *ngIf="!desired_columns">
+} @if (!desired_columns) {
+<mat-toolbar color="primary">
   <button mat-button [matMenuTriggerFor]="menu1">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu1="matMenu">
-    <div *ngFor="let item of menuItems">
-      <ng-container *ngIf="!item.submenu">
-        <!-- Menú Principal -->
+    @for (item of menuItems; track item) {
+    <div>
+      @if (!item.submenu) {
+      <!-- Menú Principal -->
+      @if (!item.submenu) {
+      <button
+        mat-button
+        routerLinkActive="selected"
+        (click)="selectMenu(item.route_principal)"
+        [matMenuTriggerFor]="menu2"
+        [routerLink]="item.route_principal"
+      >
+        {{ item.menu_principal }}
+      </button>
+      }
+      <mat-menu #menu2="matMenu">
+        @for (submenu of item.submenus; track submenu) {
         <button
-          mat-button
+          mat-menu-item
           routerLinkActive="selected"
-          (click)="selectMenu(item.route_principal)"
-          [matMenuTriggerFor]="menu2"
-          *ngIf="!item.submenu"
-          [routerLink]="item.route_principal"
+          (click)="selectMenu(submenu.route_submenu)"
+          [routerLink]="submenu.route_submenu"
         >
-          {{ item.menu_principal }}
+          {{ submenu.submenu }}
         </button>
-
-        <mat-menu #menu2="matMenu">
-          <button
-            mat-menu-item
-            routerLinkActive="selected"
-            *ngFor="let submenu of item.submenus"
-            (click)="selectMenu(submenu.route_submenu)"
-            [routerLink]="submenu.route_submenu"
-          >
-            {{ submenu.submenu }}
-          </button>
-        </mat-menu>
-      </ng-container>
+        }
+      </mat-menu>
+      }
     </div>
+    }
     <button mat-menu-item (click)="CerrarSesion()">Cerrar sesión</button>
   </mat-menu>
-
   <span class="example-spacer"></span>
   <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
 </mat-toolbar>
+}

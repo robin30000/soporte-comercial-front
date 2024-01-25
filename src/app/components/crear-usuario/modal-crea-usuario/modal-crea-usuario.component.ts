@@ -13,7 +13,7 @@ import { CrearUsuarioComponent } from '../crear-usuario.component';
 import { MatButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
-import { NgIf, NgFor } from '@angular/common';
+
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
@@ -24,19 +24,17 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
     styleUrls: ['./modal-crea-usuario.component.css'],
     standalone: true,
     imports: [
-        ReactiveFormsModule,
-        MatGridList,
-        MatGridTile,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        NgIf,
-        MatError,
-        MatSelect,
-        NgFor,
-        MatOption,
-        MatButton,
-    ],
+    ReactiveFormsModule,
+    MatGridList,
+    MatGridTile,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatSelect,
+    MatOption,
+    MatButton
+],
 })
 export class ModalCreaUsuarioComponent implements OnInit {
   perfiles = [

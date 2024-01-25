@@ -5,121 +5,145 @@
       <mat-form-field class="ancho" appearance="fill">
         <mat-label>Nombre</mat-label>
         <input matInput autocomplete="off" formControlName="nombre"/>
-        <mat-error *ngIf="formulario.get('nombre')?.hasError('required')"
-          >El nombre es obligatorio</mat-error
-        >
-        <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength')"
-          >El nombre debe tener al menos 10 caracteres</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
+        @if (formulario.get('nombre')?.hasError('required')) {
+          <mat-error
+            >El nombre es obligatorio</mat-error
+            >
+          }
+          @if (formulario.get('nombre')?.hasError('minlength')) {
+            <mat-error
+              >El nombre debe tener al menos 10 caracteres</mat-error
+              >
+            }
+          </mat-form-field>
+        </mat-grid-tile>
 
-    
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Cédula</mat-label>
-        <input matInput placeholder="Cédula" formControlName="cedula" />
-        <mat-error *ngIf="formulario.get('cedula')?.hasError('required')"
-          >La cédula es obligatoria</mat-error
-        >
-        <mat-error *ngIf="formulario.get('cedula')?.hasError('minlength')"
-          >La cédula debe tener al menos 5 caracteres</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Login</mat-label>
-        <input matInput autocomplete="off" formControlName="login"/>
-        <mat-error *ngIf="formulario.get('login')?.hasError('required')"
-          >El login es obligatorio</mat-error
-        >
-        <mat-error *ngIf="formulario.get('login')?.hasError('minlength')"
-          >El login debe tener al menos 5 caracteres</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Cédula</mat-label>
+            <input matInput placeholder="Cédula" formControlName="cedula" />
+            @if (formulario.get('cedula')?.hasError('required')) {
+              <mat-error
+                >La cédula es obligatoria</mat-error
+                >
+              }
+              @if (formulario.get('cedula')?.hasError('minlength')) {
+                <mat-error
+                  >La cédula debe tener al menos 5 caracteres</mat-error
+                  >
+                }
+              </mat-form-field>
+            </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input
-          matInput
-          autocomplete="off"
-          formControlName="password"
-          required
-          type="password"
-        />
-        <mat-error *ngIf="formulario.get('password')?.hasError('required')"
-          >La contraseña es obligatoria</mat-error
-        >
-        <mat-error *ngIf="formulario.get('password')?.hasError('minlength')"
-          >La contraseña debe tener al menos 5 caracteres</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Login</mat-label>
+                <input matInput autocomplete="off" formControlName="login"/>
+                @if (formulario.get('login')?.hasError('required')) {
+                  <mat-error
+                    >El login es obligatorio</mat-error
+                    >
+                  }
+                  @if (formulario.get('login')?.hasError('minlength')) {
+                    <mat-error
+                      >El login debe tener al menos 5 caracteres</mat-error
+                      >
+                    }
+                  </mat-form-field>
+                </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Confirmar contraseña</mat-label>
-        <input
-          matInput
-          autocomplete="off"
-          formControlName="con_pass"
-          required
-          type="password"
-        />
-        <mat-error *ngIf="formulario.get('con_pass')?.hasError('required')"
-          >Confirmar contraseña es obligatorio</mat-error
-        >
-        <mat-error *ngIf="formulario.get('con_pass')?.hasError('minlength')"
-          >Confirmar contraseña debe tener al menos 5 caracteres</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                  <mat-form-field class="ancho" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="password"
+                      required
+                      type="password"
+                      />
+                    @if (formulario.get('password')?.hasError('required')) {
+                      <mat-error
+                        >La contraseña es obligatoria</mat-error
+                        >
+                      }
+                      @if (formulario.get('password')?.hasError('minlength')) {
+                        <mat-error
+                          >La contraseña debe tener al menos 5 caracteres</mat-error
+                          >
+                        }
+                      </mat-form-field>
+                    </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Perfil</mat-label>
-        <mat-select formControlName="perfil" required>
-          <mat-option *ngFor="let perfil of perfiles" [value]="perfil.id" >
-            {{ perfil.nombre }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="formulario.get('perfil')?.hasError('required')"
-          >El campo perfil es obligatorio</mat-error
-        >
-      </mat-form-field>
-    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                      <mat-form-field class="ancho" appearance="fill">
+                        <mat-label>Confirmar contraseña</mat-label>
+                        <input
+                          matInput
+                          autocomplete="off"
+                          formControlName="con_pass"
+                          required
+                          type="password"
+                          />
+                        @if (formulario.get('con_pass')?.hasError('required')) {
+                          <mat-error
+                            >Confirmar contraseña es obligatorio</mat-error
+                            >
+                          }
+                          @if (formulario.get('con_pass')?.hasError('minlength')) {
+                            <mat-error
+                              >Confirmar contraseña debe tener al menos 5 caracteres</mat-error
+                              >
+                            }
+                          </mat-form-field>
+                        </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Canal</mat-label>
-        <input matInput autocomplete="off" formControlName="canal"/>
-      </mat-form-field>
-    </mat-grid-tile>
+                        <mat-grid-tile [colspan]="2" [rowspan]="1">
+                          <mat-form-field class="ancho" appearance="fill">
+                            <mat-label>Perfil</mat-label>
+                            <mat-select formControlName="perfil" required>
+                              @for (perfil of perfiles; track perfil) {
+                                <mat-option [value]="perfil.id" >
+                                  {{ perfil.nombre }}
+                                </mat-option>
+                              }
+                            </mat-select>
+                            @if (formulario.get('perfil')?.hasError('required')) {
+                              <mat-error
+                                >El campo perfil es obligatorio</mat-error
+                                >
+                              }
+                            </mat-form-field>
+                          </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Ciudad</mat-label>
-        <input matInput autocomplete="off" formControlName="ciudad" />
-        <input type="hidden" formControlName="edit" />
-      </mat-form-field>
-    </mat-grid-tile>
+                          <mat-grid-tile [colspan]="2" [rowspan]="1">
+                            <mat-form-field class="ancho" appearance="fill">
+                              <mat-label>Canal</mat-label>
+                              <input matInput autocomplete="off" formControlName="canal"/>
+                            </mat-form-field>
+                          </mat-grid-tile>
 
-    <hr />
+                          <mat-grid-tile [colspan]="2" [rowspan]="1">
+                            <mat-form-field class="ancho" appearance="fill">
+                              <mat-label>Ciudad</mat-label>
+                              <input matInput autocomplete="off" formControlName="ciudad" />
+                              <input type="hidden" formControlName="edit" />
+                            </mat-form-field>
+                          </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1" class="center">
-      <button (click)="dialogRef.close()" class="buttonPage ancho">
-        Cancelar
-      </button>
-    </mat-grid-tile>
+                          <hr />
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1" class="center">
-      <button mat-raised-button class="buttonPage ancho" type="submit">
-        Guardar
-      </button>
-    </mat-grid-tile>
-  </mat-grid-list>
-</form>
+                          <mat-grid-tile [colspan]="2" [rowspan]="1" class="center">
+                            <button (click)="dialogRef.close()" class="buttonPage ancho">
+                              Cancelar
+                            </button>
+                          </mat-grid-tile>
+
+                          <mat-grid-tile [colspan]="2" [rowspan]="1" class="center">
+                            <button mat-raised-button class="buttonPage ancho" type="submit">
+                              Guardar
+                            </button>
+                          </mat-grid-tile>
+                        </mat-grid-list>
+                      </form>
