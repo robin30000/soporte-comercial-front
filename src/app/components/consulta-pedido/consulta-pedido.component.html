@@ -1,99 +1,103 @@
 <app-header></app-header>
-<br>
-  <div class="body">
-    <div class="form">
-      <form [formGroup]="form" (ngSubmit)="buscar()">
-        <h1>Consultar información del cliente</h1>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Pedido UNE</mat-label>
-          <input matInput autocomplete="off" formControlName="Pedido">
-        </mat-form-field>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Cedula cliente</mat-label>
-          <input matInput autocomplete="off" formControlName="Cedula">
-        </mat-form-field>
-        <br>
-          <button type="submit" class="buttonPage ancho">Buscar</button>
-        </form>
-      </div>
-    </div>
-    @if (loading) {
-      <mat-spinner class="spinner" diameter="50"></mat-spinner>
-    }
-    <mat-card-content>
-      @if (aparece) {
-        <mat-tab-group>
-          <mat-tab label="Detalles del técnico">
-            <table class="table">
-              <tbody>
-                <tr >
-                  <th scope="row">Cedula del Tecnico</th>
-                  <td>{{datos[0].CedulaTecnico}}</td>
-                </tr>
-                <tr >
-                  <th scope="row">Nombre del Tecnico</th>
-                  <td>{{datos[0].NombreTecnico}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </mat-tab>
-          <mat-tab label="Detalles del cliente">
-            <table class="table">
-              <tbody>
-                <tr >
-                  <th scope="row">Cedula del cliente</th>
-                  <td>{{datos[0].CedulaCliente}}</td>
-                </tr>
-                <tr >
-                  <th scope="row">Nombre del cliente</th>
-                  <td>{{datos[0].NombreCliente}}</td>
-                </tr>
-                <tr >
-                  <th scope="row">Direccion del cliente</th>
-                  <td>{{datos[0].DireccionCliente}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </mat-tab>
-          <mat-tab label="Detalles del pedido">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Estado pedido</th>
-                  <th scope="col">Pedido_UNE</th>
-                  <th scope="col">Fecha cita</th>
-                  <th scope="col">Franja</th>
-                  <th scope="col">UEN</th>
-                  <th scope="col">Segmento</th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Tecnologia</th>
-                  <th scope="col">Microzona</th>
-                  <th scope="col">Tarea</th>
-                  <th scope="col">Estado Click</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (dato of datos; track dato) {
-                  <tr>
-                    <td>{{dato.Name}}</td>
-                    <td>{{dato.Pedido}}</td>
-                    <td>{{dato.FechaCita}}</td>
-                    <td>{{dato.HoraCita}}</td>
-                    <td>{{dato.UEN}}</td>
-                    <td>{{dato.Segmento}}</td>
-                    <td>{{dato.Productos}}</td>
-                    <td>{{dato.Tecnologias}}</td>
-                    <td>{{dato.MicroZona}}</td>
-                    <td>{{dato.Tarea}}</td>
-                    <td >{{Dispatch}}</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-            @if (Mensaje) {
-              <td style="flex-direction: right;"><br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*El pedido no tiene informacion completa en click, es temporal</td>
-            }
-          </mat-tab>
-        </mat-tab-group>
+<br />
+<div class="body">
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="buscar()">
+      <h1>Consultar información del cliente</h1>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Pedido UNE</mat-label>
+        <input matInput autocomplete="off" formControlName="Pedido" />
+      </mat-form-field>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Cedula cliente</mat-label>
+        <input matInput autocomplete="off" formControlName="Cedula" />
+      </mat-form-field>
+      <br />
+      <button type="submit" class="buttonPage ancho">Buscar</button>
+    </form>
+  </div>
+</div>
+@if (loading) {
+<mat-spinner class="spinner" diameter="50"></mat-spinner>
+}
+<mat-card-content>
+  @if (aparece) {
+  <mat-tab-group>
+    <mat-tab label="Detalles del técnico">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Cedula del Tecnico</th>
+            <td>{{ datos[0].CedulaTecnico }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Nombre del Tecnico</th>
+            <td>{{ datos[0].NombreTecnico }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Detalles del cliente">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Cedula del cliente</th>
+            <td>{{ datos[0].CedulaCliente }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Nombre del cliente</th>
+            <td>{{ datos[0].NombreCliente }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Direccion del cliente</th>
+            <td>{{ datos[0].DireccionCliente }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Detalles del pedido">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Estado pedido</th>
+            <th scope="col">Pedido_UNE</th>
+            <th scope="col">Fecha cita</th>
+            <th scope="col">Franja</th>
+            <th scope="col">UEN</th>
+            <th scope="col">Segmento</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Tecnologia</th>
+            <th scope="col">Microzona</th>
+            <th scope="col">Tarea</th>
+            <th scope="col">Estado Click</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (dato of datos; track dato) {
+          <tr>
+            <td>{{ dato.Name }}</td>
+            <td>{{ dato.Pedido }}</td>
+            <td>{{ dato.FechaCita }}</td>
+            <td>{{ dato.HoraCita }}</td>
+            <td>{{ dato.UEN }}</td>
+            <td>{{ dato.Segmento }}</td>
+            <td>{{ dato.Productos }}</td>
+            <td>{{ dato.Tecnologias }}</td>
+            <td>{{ dato.MicroZona }}</td>
+            <td>{{ dato.Tarea }}</td>
+            <td>{{ Dispatch }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      @if (Mensaje) {
+      <td style="flex-direction: right">
+        <br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*El
+        pedido no tiene informacion completa en click, es temporal
+      </td>
       }
-    </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+  }
+</mat-card-content>

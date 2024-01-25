@@ -1,163 +1,158 @@
 <app-header></app-header>
-<br>
-  <div class="body">
-    <div class="form">
-      <form [formGroup]="form" (ngSubmit)="buscar()">
-        <h1>Consultar pedido</h1>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Pedido UNE</mat-label>
-          <input matInput autocomplete="off" formControlName="Pedido">
-        </mat-form-field>
-        <br>
-          <button type="submit" class="buttonPage ancho">Buscar</button>
-        </form>
-      </div>
-    </div>
-    @if (loading) {
-      <mat-spinner class="spinner" diameter="50"></mat-spinner>
-    }
-
-    @if (aparece) {
-      <Div>
-      @if (install) {
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">PEDIDO UNE</th>
-              <th scope="col">TIPO PETICIÓN</th>
-              <th scope="col">PEDIDO ID</th>
-              <th scope="col">FECHA</th>
-              <th scope="col">SERIAL</th>
-              <th scope="col">MAC</th>
-              <th scope="col">PRODUCTO</th>
-              <th scope="col">TIPO EQUIPO</th>
-              <th scope="col">FECHA_COMPLETADO</th>
-              <th scope="col">ESTADO CLICK</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (dato of dataInstall; track dato) {
-              <tr>
-                <td>{{dato.PEDIDO_UNE}}</td>
-                <td> {{dato.TIPOPETICION}}</td>
-                <td>{{dato.PEDIDO_ID}}</td>
-                <td>{{dato.FECHA}}</td>
-                <td>{{dato.SERIAL}}</td>
-                <td>{{dato.MAC}}</td>
-                <td>{{dato.PRODUCTO}}</td>
-                <td>{{dato.TIPO_EQUIPO}}</td>
-                <td>{{dato.FECHA_COMPLETADO}}</td>
-                <td>{{dato.ESTADO_CLICK}}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+<br />
+<div class="body">
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="buscar()">
+      <h1>Consultar pedido</h1>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-label>Pedido UNE</mat-label>
+        <input matInput autocomplete="off" formControlName="Pedido" />
+      </mat-form-field>
+      <br />
+      <button type="submit" class="buttonPage ancho">Buscar</button>
+    </form>
+  </div>
+</div>
+@if (loading) {
+<mat-spinner class="spinner" diameter="50"></mat-spinner>
+} @if (aparece) {
+<Div>
+  @if (install) {
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">PEDIDO UNE</th>
+        <th scope="col">TIPO PETICIÓN</th>
+        <th scope="col">PEDIDO ID</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">SERIAL</th>
+        <th scope="col">MAC</th>
+        <th scope="col">PRODUCTO</th>
+        <th scope="col">TIPO EQUIPO</th>
+        <th scope="col">FECHA_COMPLETADO</th>
+        <th scope="col">ESTADO CLICK</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dato of dataInstall; track dato) {
+      <tr>
+        <td>{{ dato.PEDIDO_UNE }}</td>
+        <td>{{ dato.TIPOPETICION }}</td>
+        <td>{{ dato.PEDIDO_ID }}</td>
+        <td>{{ dato.FECHA }}</td>
+        <td>{{ dato.SERIAL }}</td>
+        <td>{{ dato.MAC }}</td>
+        <td>{{ dato.PRODUCTO }}</td>
+        <td>{{ dato.TIPO_EQUIPO }}</td>
+        <td>{{ dato.FECHA_COMPLETADO }}</td>
+        <td>{{ dato.ESTADO_CLICK }}</td>
+      </tr>
       }
-      @if (repair) {
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">PEDIDO UNE</th>
-              <th scope="col">TIPO PETICIÓN</th>
-              <th scope="col">PEDIDO ID</th>
-              <th scope="col">FECHA</th>
-              <th scope="col">Serial Recuperado</th>
-              <th scope="col">Serial Entrante</th>
-              <th scope="col">MAC Recuperado</th>
-              <th scope="col">MAC Entrante</th>
-              <th scope="col">PRODUCTO</th>
-              <th scope="col">TIPO EQUIPO</th>
-              <th scope="col">FECHA_COMPLETADO</th>
-              <th scope="col">ESTADO CLICK</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (dato of dataRepair; track dato) {
-              <tr>
-                <td>{{dato.PEDIDO_UNE}}</td>
-                <td> {{dato.TIPOPETICION}}</td>
-                <td>{{dato.PEDIDO_ID}}</td>
-                <td>{{dato.FECHA}}</td>
-                <td>{{dato.SerialNoReal}}</td>
-                <td>{{dato.SerialNoReal2}}</td>
-                <td>{{dato.MACReal}}</td>
-                <td>{{dato.MACReal2}}</td>
-                <td>{{dato.PRODUCTO}}</td>
-                <td>{{dato.TIPO_EQUIPO}}</td>
-                <td>{{dato.FECHA_COMPLETADO}}</td>
-                <td>{{dato.ESTADO_CLICK}}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+    </tbody>
+  </table>
+  } @if (repair) {
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">PEDIDO UNE</th>
+        <th scope="col">TIPO PETICIÓN</th>
+        <th scope="col">PEDIDO ID</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">Serial Recuperado</th>
+        <th scope="col">Serial Entrante</th>
+        <th scope="col">MAC Recuperado</th>
+        <th scope="col">MAC Entrante</th>
+        <th scope="col">PRODUCTO</th>
+        <th scope="col">TIPO EQUIPO</th>
+        <th scope="col">FECHA_COMPLETADO</th>
+        <th scope="col">ESTADO CLICK</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dato of dataRepair; track dato) {
+      <tr>
+        <td>{{ dato.PEDIDO_UNE }}</td>
+        <td>{{ dato.TIPOPETICION }}</td>
+        <td>{{ dato.PEDIDO_ID }}</td>
+        <td>{{ dato.FECHA }}</td>
+        <td>{{ dato.SerialNoReal }}</td>
+        <td>{{ dato.SerialNoReal2 }}</td>
+        <td>{{ dato.MACReal }}</td>
+        <td>{{ dato.MACReal2 }}</td>
+        <td>{{ dato.PRODUCTO }}</td>
+        <td>{{ dato.TIPO_EQUIPO }}</td>
+        <td>{{ dato.FECHA_COMPLETADO }}</td>
+        <td>{{ dato.ESTADO_CLICK }}</td>
+      </tr>
       }
-      @if (traslado) {
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">PEDIDO UNE</th>
-              <th scope="col">TIPO PETICIÓN</th>
-              <th scope="col">PEDIDO ID</th>
-              <th scope="col">FECHA</th>
-              <th scope="col">SERIAL</th>
-              <th scope="col">MAC</th>
-              <th scope="col">PRODUCTO</th>
-              <th scope="col">TIPO EQUIPO</th>
-              <th scope="col">FECHA_COMPLETADO</th>
-              <th scope="col">ESTADO CLICK</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (dato of dataTralado; track dato) {
-              <tr>
-                <td>{{dato.PEDIDO_UNE}}</td>
-                <td> {{dato.TIPOPETICION}}</td>
-                <td>{{dato.PEDIDO_ID}}</td>
-                <td>{{dato.FECHA}}</td>
-                <td>{{dato.SERIAL}}</td>
-                <td>{{dato.MAC}}</td>
-                <td>{{dato.PRODUCTO}}</td>
-                <td>{{dato.TIPO_EQUIPO}}</td>
-                <td>{{dato.FECHA_COMPLETADO}}</td>
-                <td>{{dato.ESTADO_CLICK}}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+    </tbody>
+  </table>
+  } @if (traslado) {
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">PEDIDO UNE</th>
+        <th scope="col">TIPO PETICIÓN</th>
+        <th scope="col">PEDIDO ID</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">SERIAL</th>
+        <th scope="col">MAC</th>
+        <th scope="col">PRODUCTO</th>
+        <th scope="col">TIPO EQUIPO</th>
+        <th scope="col">FECHA_COMPLETADO</th>
+        <th scope="col">ESTADO CLICK</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dato of dataTralado; track dato) {
+      <tr>
+        <td>{{ dato.PEDIDO_UNE }}</td>
+        <td>{{ dato.TIPOPETICION }}</td>
+        <td>{{ dato.PEDIDO_ID }}</td>
+        <td>{{ dato.FECHA }}</td>
+        <td>{{ dato.SERIAL }}</td>
+        <td>{{ dato.MAC }}</td>
+        <td>{{ dato.PRODUCTO }}</td>
+        <td>{{ dato.TIPO_EQUIPO }}</td>
+        <td>{{ dato.FECHA_COMPLETADO }}</td>
+        <td>{{ dato.ESTADO_CLICK }}</td>
+      </tr>
       }
-      @if (collect) {
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">PEDIDO UNE</th>
-              <th scope="col">TIPO PETICIÓN</th>
-              <th scope="col">PEDIDO ID</th>
-              <th scope="col">FECHA</th>
-              <th scope="col">Serial Real</th>
-              <th scope="col">MAC Real</th>
-              <th scope="col">PRODUCTO</th>
-              <th scope="col">TIPO EQUIPO</th>
-              <th scope="col">FECHA_COMPLETADO</th>
-              <th scope="col">ESTADO CLICK</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (dato of dataCollect; track dato) {
-              <tr>
-                <td>{{dato.PEDIDO_UNE}}</td>
-                <td> {{dato.TIPOPETICION}}</td>
-                <td>{{dato.PEDIDO_ID}}</td>
-                <td>{{dato.FECHA}}</td>
-                <td>{{dato.SerialNoReal}}</td>
-                <td>{{dato.MACReal}}</td>
-                <td>{{dato.PRODUCTO}}</td>
-                <td>{{dato.TIPO_EQUIPO}}</td>
-                <td>{{dato.FECHA_COMPLETADO}}</td>
-                <td>{{dato.ESTADO_CLICK}}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
+    </tbody>
+  </table>
+  } @if (collect) {
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">PEDIDO UNE</th>
+        <th scope="col">TIPO PETICIÓN</th>
+        <th scope="col">PEDIDO ID</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">Serial Real</th>
+        <th scope="col">MAC Real</th>
+        <th scope="col">PRODUCTO</th>
+        <th scope="col">TIPO EQUIPO</th>
+        <th scope="col">FECHA_COMPLETADO</th>
+        <th scope="col">ESTADO CLICK</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (dato of dataCollect; track dato) {
+      <tr>
+        <td>{{ dato.PEDIDO_UNE }}</td>
+        <td>{{ dato.TIPOPETICION }}</td>
+        <td>{{ dato.PEDIDO_ID }}</td>
+        <td>{{ dato.FECHA }}</td>
+        <td>{{ dato.SerialNoReal }}</td>
+        <td>{{ dato.MACReal }}</td>
+        <td>{{ dato.PRODUCTO }}</td>
+        <td>{{ dato.TIPO_EQUIPO }}</td>
+        <td>{{ dato.FECHA_COMPLETADO }}</td>
+        <td>{{ dato.ESTADO_CLICK }}</td>
+      </tr>
       }
-    </Div>
+    </tbody>
+  </table>
   }
+</Div>
+}
