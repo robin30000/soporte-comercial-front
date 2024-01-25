@@ -1,14 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListMenu, ListPerfil } from 'src/app/interfaces/interfaces';
-import { PerfilMenuService } from 'src/app/services/perfil-menu.service';
+import { ListMenu, ListPerfil } from 'src/app/shared/interfaces/interfaces';
+import { PerfilMenuService } from 'src/app/shared/services/perfil-menu.service';
 import Swal from 'sweetalert2';
 import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { ModalPerfilMenuComponent } from './modal-perfil-menu/modal-perfil-menu.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { HeaderComponent } from '../../shared/header/header.component';
 @Component({
-  selector: 'app-perfil-menu',
-  templateUrl: './perfil-menu.component.html',
-  styleUrls: ['./perfil-menu.component.css'],
+    selector: 'app-perfil-menu',
+    templateUrl: './perfil-menu.component.html',
+    styleUrls: ['./perfil-menu.component.css'],
+    standalone: true,
+    imports: [
+        HeaderComponent,
+        MatGridList,
+        MatGridTile,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatIconButton,
+        MatIcon,
+    ],
 })
 export class PerfilMenuComponent implements OnInit {
   login: any;
