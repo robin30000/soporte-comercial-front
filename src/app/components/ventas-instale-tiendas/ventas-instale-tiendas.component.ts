@@ -8,7 +8,8 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
 import {MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, ObservableInput, startWith, switchMap } from 'rxjs';
 import { RespuestaPedidoVenta, VentasInstaleTienda } from 'src/app/interfaces/interfaces';
