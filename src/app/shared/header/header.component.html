@@ -4,9 +4,6 @@
   <span class="example-spacer"></span>
   @for (item of menuItems; track item) {
   <div>
-    @if (!item.submenu) {
-    <!-- Menú Principal -->
-    @if (!item.submenu) {
     <button
       mat-button
       routerLinkActive="selected"
@@ -16,8 +13,8 @@
     >
       {{ item.menu_principal }}
     </button>
-    }
-    <mat-menu #menu="matMenu">
+
+    <mat-menu #menu="matMenu" class="submenu" [class.hidden]="item.submenus === 0" style="display: none !important;">
       @for (submenu of item.submenus; track submenu) {
       <button
         mat-menu-item
@@ -29,7 +26,6 @@
       </button>
       }
     </mat-menu>
-    }
   </div>
   }
   <span class="example-spacer"></span>
