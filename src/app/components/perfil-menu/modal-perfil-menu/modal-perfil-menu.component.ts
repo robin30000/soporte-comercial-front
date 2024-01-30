@@ -2,13 +2,38 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PerfilMenuService } from 'src/app/services/perfil-menu.service';
+import { PerfilMenuService } from 'src/app/shared/services/perfil-menu.service';
 import Swal from 'sweetalert2';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { NgStyle } from '@angular/common';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
-  selector: 'app-modal-perfil-menu',
-  templateUrl: './modal-perfil-menu.component.html',
-  styleUrls: ['./modal-perfil-menu.component.css'],
+    selector: 'app-modal-perfil-menu',
+    templateUrl: './modal-perfil-menu.component.html',
+    styleUrls: ['./modal-perfil-menu.component.css'],
+    standalone: true,
+    imports: [
+        MatGridList,
+        MatGridTile,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        NgStyle,
+        MatIconButton,
+        MatIcon,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+    ],
 })
 export class ModalPerfilMenuComponent implements OnInit {
   displayedColumns: string[] = ['Perfil', 'Estado', 'Menu', 'Acción'];

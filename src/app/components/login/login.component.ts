@@ -1,16 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
 export interface Usuario {
   username: string;
   password: string;
 }
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: true,
+    imports: [
+    MatProgressSpinner,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError
+],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;

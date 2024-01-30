@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 //import {MatDialogModule} from '@angular/material/dialog';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 
@@ -7,22 +7,39 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
 
 import {MatPaginator, MatPaginatorIntl, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, ObservableInput, startWith, switchMap } from 'rxjs';
-import { RespuestaPedidoVenta, VentasInstaleTienda } from 'src/app/interfaces/interfaces';
-import { VentaInstaleService } from 'src/app/services/venta-instale.service';
+import { RespuestaPedidoVenta, VentasInstaleTienda } from 'src/app/shared/interfaces/interfaces';
+import { VentaInstaleService } from 'src/app/shared/services/venta-instale.service';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 import { FileSaverService } from 'ngx-filesaver';
+import { CdkAccordion, CdkAccordionItem } from '@angular/cdk/accordion';
+import { MatBadge } from '@angular/material/badge';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatDatepickerInput, MatDatepickerToggle, MatDatepicker } from '@angular/material/datepicker';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMiniFabButton, MatButton, MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatHint, MatSuffix } from '@angular/material/form-field';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { NgClass } from '@angular/common';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 
 @Component({
-  selector: 'app-ventas-instale-tiendas',
-  templateUrl: './ventas-instale-tiendas.component.html',
-  styleUrls: ['./ventas-instale-tiendas.component.css']
+    selector: 'app-ventas-instale-tiendas',
+    templateUrl: './ventas-instale-tiendas.component.html',
+    styleUrls: ['./ventas-instale-tiendas.component.css'],
+    standalone: true,
+    imports: [HeaderComponent, MatTabGroup, MatTab, MatGridList, MatGridTile, MatCard, MatCardContent, ReactiveFormsModule, MatFormField, NgClass, MatLabel, MatInput, MatMiniFabButton, MatTooltip, MatIcon, MatHint, MatDatepickerInput, MatDatepickerToggle, MatSuffix, MatDatepicker, MatSelect, MatOption, MatButton, MatBadge, MatIconButton, MatTable, MatSort, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatSortHeader, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, CdkAccordion, CdkAccordionItem, MatPaginator]
 })
 
 export class VentasInstaleTiendasComponent implements OnInit {

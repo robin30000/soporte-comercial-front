@@ -26,5 +26,18 @@ button{
   -o-border-radius: 0;
 }
 
+.submenu{
+  background-color: rgb(23, 84, 137) !important;
+  font-weight: bolder !important;
+  font-size: 50px !important;
+}
+
+.submenu.hidden{
+  display: none !important;
+}
+
+
+
+
 
 

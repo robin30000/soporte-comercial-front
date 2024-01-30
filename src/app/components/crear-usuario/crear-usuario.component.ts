@@ -1,5 +1,5 @@
 import { Dialog, DialogModule, DialogRef } from '@angular/cdk/dialog';
-import { CrearUsuarioService } from './../../services/crear-usuario.service';
+import { CrearUsuarioService } from '../../shared/services/crear-usuario.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,20 +15,48 @@ import {
   switchMap,
 } from 'rxjs';
 
-import { usuarios } from 'src/app/interfaces/interfaces';
+import { usuarios } from 'src/app/shared/interfaces/interfaces';
 import Swal from 'sweetalert2';
 import { ModalCreaUsuarioComponent } from './modal-crea-usuario/modal-crea-usuario.component';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
 import {
   MatPaginator,
   MatPaginatorIntl,
   PageEvent,
 } from '@angular/material/paginator';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
-  selector: 'app-crear-usuario',
-  templateUrl: './crear-usuario.component.html',
-  styleUrls: ['./crear-usuario.component.css'],
+    selector: 'app-crear-usuario',
+    templateUrl: './crear-usuario.component.html',
+    styleUrls: ['./crear-usuario.component.css'],
+    standalone: true,
+    imports: [
+        HeaderComponent,
+        MatFormField,
+        MatLabel,
+        MatInput,
+        MatIconButton,
+        MatTooltip,
+        MatIcon,
+        MatTable,
+        MatSort,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        MatPaginator,
+    ],
 })
 export class CrearUsuarioComponent implements OnInit {
   public desired_columns: any;

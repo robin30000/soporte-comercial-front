@@ -5,16 +5,36 @@ import {
   DialogModule,
 } from '@angular/cdk/dialog';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CrearUsuarioService } from 'src/app/services/crear-usuario.service';
+import { CrearUsuarioService } from 'src/app/shared/services/crear-usuario.service';
 import Swal from 'sweetalert2';
 import { CrearUsuarioComponent } from '../crear-usuario.component';
+import { MatButton } from '@angular/material/button';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
-  selector: 'app-modal-crea-usuario',
-  templateUrl: './modal-crea-usuario.component.html',
-  styleUrls: ['./modal-crea-usuario.component.css'],
+    selector: 'app-modal-crea-usuario',
+    templateUrl: './modal-crea-usuario.component.html',
+    styleUrls: ['./modal-crea-usuario.component.css'],
+    standalone: true,
+    imports: [
+    ReactiveFormsModule,
+    MatGridList,
+    MatGridTile,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatSelect,
+    MatOption,
+    MatButton
+],
 })
 export class ModalCreaUsuarioComponent implements OnInit {
   perfiles = [

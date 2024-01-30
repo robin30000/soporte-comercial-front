@@ -1,0 +1,79 @@
+@if (desired_columns) {
+<mat-toolbar color="primary">
+  <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
+  <span class="example-spacer"></span>
+  @for (item of menuItems; track item) {
+  <div>
+    <button
+      mat-button
+      routerLinkActive="selected"
+      (click)="selectMenu(item.route_principal)"
+      [matMenuTriggerFor]="menu"
+      [routerLink]="item.route_principal"
+    >
+      {{ item.menu_principal }}
+    </button>
+
+    <mat-menu #menu="matMenu" class="submenu" [class.hidden]="item.submenus === 0" style="display: none !important;">
+      @for (submenu of item.submenus; track submenu) {
+      <button
+        mat-menu-item
+        routerLinkActive="selected"
+        (click)="selectMenu(submenu.route_submenu)"
+        [routerLink]="submenu.route_submenu"
+      >
+        {{ submenu.submenu }}
+      </button>
+      }
+    </mat-menu>
+  </div>
+  }
+  <span class="example-spacer"></span>
+  <span style="font-size: 0.9rem">{{ user }}</span>
+  <button mat-icon-button (click)="CerrarSesion()" matTooltip="Cerrar sesión">
+    <span class="example-spacer"></span>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+} @if (!desired_columns) {
+<mat-toolbar color="primary">
+  <button mat-button [matMenuTriggerFor]="menu1">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu1="matMenu">
+    @for (item of menuItems; track item) {
+    <div>
+      @if (!item.submenu) {
+      <!-- Menú Principal -->
+      @if (!item.submenu) {
+      <button
+        mat-button
+        routerLinkActive="selected"
+        (click)="selectMenu(item.route_principal)"
+        [matMenuTriggerFor]="menu2"
+        [routerLink]="item.route_principal"
+      >
+        {{ item.menu_principal }}
+      </button>
+      }
+      <mat-menu #menu2="matMenu">
+        @for (submenu of item.submenus; track submenu) {
+        <button
+          mat-menu-item
+          routerLinkActive="selected"
+          (click)="selectMenu(submenu.route_submenu)"
+          [routerLink]="submenu.route_submenu"
+        >
+          {{ submenu.submenu }}
+        </button>
+        }
+      </mat-menu>
+      }
+    </div>
+    }
+    <button mat-menu-item (click)="CerrarSesion()">Cerrar sesión</button>
+  </mat-menu>
+  <span class="example-spacer"></span>
+  <span><img src="assets\img\tigo.png" class="logoTolbar" /></span>
+</mat-toolbar>
+}

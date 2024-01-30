@@ -1,15 +1,22 @@
 <div class="body">
   <div class="login">
-    <mat-spinner *ngIf="loding" class="spinner" diameter="50"></mat-spinner>
-    <form *ngIf="!loding" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+    @if (loding) {
+    <mat-spinner class="spinner" diameter="50"></mat-spinner>
+    } @if (!loding) {
+    <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
       <img src="assets/img/02_Logo_Tigo_209x150.png" alt="Tigo" width="50%" />
       <h1>Soporte Comercial</h1>
       <mat-form-field appearance="fill" class="ancho">
         <mat-label>Usuario</mat-label>
-        <input matInput autocomplete="off" formControlName="username" required="true"/>
-        <mat-error *ngIf="loginForm.get('username')?.hasError('required')"
-          >El campo usuario es obligatorio</mat-error
-        >
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="username"
+          required="true"
+        />
+        @if (loginForm.get('username')?.hasError('required')) {
+        <mat-error>El campo usuario es obligatorio</mat-error>
+        }
       </mat-form-field>
       <mat-form-field class="ancho" appearance="fill" hideRequiredMarker="true">
         <mat-label>Contraseña</mat-label>
@@ -19,9 +26,9 @@
           autocomplete="off"
           formControlName="password"
         />
-        <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
-          >El campo contraseña es obligatorio</mat-error
-        >
+        @if (loginForm.get('password')?.hasError('required')) {
+        <mat-error>El campo contraseña es obligatorio</mat-error>
+        }
       </mat-form-field>
       <br />
       <button
@@ -32,5 +39,6 @@
         Iniciar sesión
       </button>
     </form>
+    }
   </div>
 </div>

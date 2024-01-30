@@ -14,9 +14,12 @@
     </form>
   </div>
 </div>
-<mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+@if (loading) {
+<mat-spinner class="spinner" diameter="50"></mat-spinner>
+}
 <mat-card-content style="padding: 20px">
-  <mat-tab-group *ngIf="aparece">
+  @if (aparece) {
+  <mat-tab-group>
     <mat-tab label="Pedido">
       <table class="table">
         <tbody>
@@ -44,28 +47,38 @@
             <th scope="row">Técnico</th>
             <td>{{ datos[0].NombreTecnico }}</td>
           </tr>
-          <tr *ngIf="observe">
+          @if (observe) {
+          <tr>
             <th scope="row">Observación Técnico</th>
             <td>{{ Observacion }}</td>
           </tr>
-          <tr *ngIf="aparece1">
+          } @if (aparece1) {
+          <tr>
             <th scope="row">Supervisor</th>
             <td>{{ supervisor[0].NOMBRE_FUNCIONARIO }}</td>
           </tr>
-          <tr *ngIf="aparece1">
+          } @if (aparece1) {
+          <tr>
             <th scope="row">Celular Supervisor</th>
             <td>{{ supervisor[0].CELULAR }}</td>
           </tr>
-          <tr *ngIf="EstadoPedido">
+          } @if (EstadoPedido) {
+          <tr>
             <th>Estado Click</th>
-            <td>Pedido Amarillo (El pedido no tiene información completa en click, es temporal)</td>
+            <td>
+              Pedido Amarillo (El pedido no tiene información completa en click,
+              es temporal)
+            </td>
           </tr>
-          <tr *ngIf="MicroZona">
+          } @if (MicroZona) {
+          <tr>
             <th>Microzona</th>
             <td>El pedido esta en una microzona de no atención</td>
           </tr>
+          }
         </tbody>
       </table>
     </mat-tab>
   </mat-tab-group>
+  }
 </mat-card-content>

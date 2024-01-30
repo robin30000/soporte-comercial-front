@@ -1,10 +1,29 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive, RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatToolbar } from '@angular/material/toolbar';
+
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    standalone: true,
+    imports: [
+    MatToolbar,
+    MatButton,
+    RouterLinkActive,
+    MatMenuTrigger,
+    RouterLink,
+    MatMenu,
+    MatMenuItem,
+    MatIconButton,
+    MatTooltip,
+    MatIcon
+],
 })
 export class HeaderComponent implements OnInit {
   perfil: any;

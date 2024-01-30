@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ConsultaService } from '../services/consulta.service';
+import { ConsultaService } from '../../shared/services/consulta.service';
 import { Router } from '@angular/router';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
-  selector: 'app-consulta-equipos-instalados',
-  templateUrl: './consulta-equipos-instalados.component.html',
-  styleUrls: ['./consulta-equipos-instalados.component.css']
+    selector: 'app-consulta-equipos-instalados',
+    templateUrl: './consulta-equipos-instalados.component.html',
+    styleUrls: ['./consulta-equipos-instalados.component.css'],
+    standalone: true,
+    imports: [HeaderComponent, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatProgressSpinner]
 })
 export class ConsultaEquiposInstaladosComponent implements OnInit {
   loading = false;
