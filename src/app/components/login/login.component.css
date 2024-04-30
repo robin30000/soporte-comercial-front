@@ -1,20 +1,30 @@
-.body{
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    align-items: center;
+.body {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
 }
 
-.login{
-    width: 100%;
-    max-width: 330px;
-    text-align: center;
+.login {
+  width: 100%;
+  max-width: 330px;
+  text-align: center;
 }
 
-.ancho{
-    width: 80%;
+.ancho {
+  width: 80%;
 }
 
-.spinner{
-    margin: 0 auto;
+.spinner {
+  margin: 0 auto;
+}
+.recover {
+    color: #000055;
+  text-decoration: none; 
+  cursor: pointer; 
+}
+.recover:hover {
+  color: #000055;
+  font-weight: bolder;
+  text-decoration: none;
 }

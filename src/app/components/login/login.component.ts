@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
@@ -6,6 +6,12 @@ import Swal from 'sweetalert2';
 import { MatInput } from '@angular/material/input';
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { RecoverPassService } from 'src/app/shared/services/recover-pass.service';
+import { FormRecoverComponent } from './form-recover/form-recover.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalPerfilMenuComponent } from '../perfil-menu/modal-perfil-menu/modal-perfil-menu.component';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 
 export interface Usuario {
   username: string;
@@ -22,7 +28,13 @@ export interface Usuario {
     MatFormField,
     MatLabel,
     MatInput,
-    MatError
+    MatError,
+    MatGridTile,
+    MatGridList,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
 ],
 })
 export class LoginComponent implements OnInit {
@@ -50,11 +62,37 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
+    private recover: RecoverPassService,
+    public dialog: Dialog,
+    //public dialogRef: MatDialogRef<FormRecoverComponent>,
+    //@Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+
+
+
+  public recoverPass = () => {
+    console.log('Hola');
+    let data = 'Robin';
+    const dialogRef = this.dialog.open<FormRecoverComponent, any, any>(
+      FormRecoverComponent,
+      {
+        
+      }
+    );
+    // this.recover.recoverPass(data).subscribe((res) => {      
+    //   console.log('perrrti');
+      
+    // });
+    
+  }
+
+  onNoClick(): void {
+    this.dialog.closeAll();
   }
 
   public iniciarSesion() {

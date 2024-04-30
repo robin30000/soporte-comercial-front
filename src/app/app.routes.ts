@@ -6,6 +6,7 @@ import { PerfilMenuComponent } from "./components/perfil-menu/perfil-menu.compon
 import { Routes } from "@angular/router";
 import { VentasComponent } from "./components/ventas/ventas.component";
 import { VentasInstaleTiendasComponent } from "./components/ventas-instale-tiendas/ventas-instale-tiendas.component";
+import { RecovePassComponent } from "./components/login/recove-pass/recove-pass.component";
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'ventas-instale-tiendas', component: VentasInstaleTiendasComponent },
     { path: 'crear-usuario', component: CrearUsuarioComponent },
     { path: 'perfil-menu', component: PerfilMenuComponent },
+    { path: 'recuperar-login/:id', component: RecovePassComponent },
     {
       path: '**',
       redirectTo: 'login',

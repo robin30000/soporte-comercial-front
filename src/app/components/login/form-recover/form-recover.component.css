@@ -1,0 +1,28 @@
+:host {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    width: 600px;
+    max-width: 600px;
+    animation: custom-dialog-enter 1s ease;
+    -webkit-animation: custom-dialog-enter 1s ease;
+}
+  
+  @keyframes custom-dialog-enter {
+    from {
+      transform: scale(0) rotate(360deg);
+    }
+  
+    to {
+      transform: none;
+    }
+  }
+
+  .ancho {
+    width: 100%;
+  }
+
+  .buttonPage{
+    width: 90%;
+  }
