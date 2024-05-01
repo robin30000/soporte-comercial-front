@@ -10,7 +10,7 @@
         <input matInput autocomplete="off" formControlName="Pedido" />
       </mat-form-field>
       <br />
-      <button type="submit" class="buttonPage ancho">Buscar</button>
+      <button type="submit" class="buttonPage ancho" [disabled]="loading">Buscar</button>
     </form>
   </div>
 </div>
@@ -45,7 +45,7 @@
           </tr>
           @if (datos[0].UNEObservation != null) {
           <tr>
-            <th scope="row">Observación</th>
+            <th scope="row">Observación despachador</th>
             <td>{{ datos[0].UNEObservation }}</td>
           </tr>
           }

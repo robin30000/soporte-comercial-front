@@ -9,7 +9,7 @@
         <input matInput autocomplete="off" formControlName="Pedido" />
       </mat-form-field>
       <br />
-      <button type="submit" class="buttonPage ancho">Buscar</button>
+      <button type="submit" class="buttonPage ancho" [disabled]="loading">Buscar</button>
     </form>
   </div>
 </div>
