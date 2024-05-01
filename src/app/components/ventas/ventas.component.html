@@ -43,6 +43,13 @@
             <th scope="row">Guion</th>
             <td>{{ Guion }}</td>
           </tr>
+          @if (datos[0].UNEObservation != null) {
+          <tr>
+            <th scope="row">Observación</th>
+            <td>{{ datos[0].UNEObservation }}</td>
+          </tr>
+          }
+
           <tr>
             <th scope="row">Técnico</th>
             <td>{{ datos[0].NombreTecnico }}</td>

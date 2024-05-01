@@ -139,7 +139,7 @@ export class VentasComponent implements OnInit {
                 res1[0]['ObsTecnico'] == null
               ) {
                 this.Observacion =
-                  'Para este pedido el tecnico no registro observaciones';
+                  'Para este pedido el técnico no registro observaciones';
               } else {
                 this.Observacion = res1[0]['ObsTecnico'];
               }
@@ -338,6 +338,8 @@ export class VentasComponent implements OnInit {
           }
 
           this.datos = res;
+          console.log(this.datos, ' pepe');
+          
         }
       },
       error: (error) => {
