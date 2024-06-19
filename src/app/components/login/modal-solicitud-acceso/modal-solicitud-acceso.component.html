@@ -1,0 +1,87 @@
+<div class="cuerpoModal">
+  <mat-card>
+    <h4>Solicitud de acceso</h4>
+
+    <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Usuario de red</mat-label>
+        <input
+          matInput
+          formControlName="usuario"
+          id="usuario"
+          placeholder="Usuario de red"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Identificación</mat-label>
+        <input
+          matInput
+          formControlName="cc"
+          id="cc"
+          placeholder="Identificación"
+          required
+          type="number"
+          minlength="5"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre completo</mat-label>
+        <input
+          matInput
+          formControlName="nombre"
+          id="nombre"
+          placeholder="Nombre completo"
+          required
+          minlength="5"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Correo electrónico corporativo</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          id="email"
+          placeholder="Correo electrónico"
+          required
+          type="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Justificación solicitud</mat-label>
+        <textarea
+          matInput
+          formControlName="observacion"
+          id="observacion"
+          placeholder="Observación"
+          required
+          rows="3"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="form-buttons">
+        <button
+          mat-button
+          type="button"
+          (click)="onCancel()"
+          class="buttonPage ancho"
+        >
+          Cancelar
+        </button>
+        <button
+          class="buttonPage ancho"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="solicitudForm.invalid"
+        >
+          Solicitar acceso
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

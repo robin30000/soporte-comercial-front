@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  /* padding: 16px; */
+  width: 600px;
+  max-width: 900px;
+  animation: custom-dialog-enter 1s ease;
+}
+
+@keyframes custom-dialog-enter {
+  from {
+    transform: scale(0) rotate(360deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+/* .ancho {
+  width: 80%;
+}
+
+.ng-star-inserted {
+  width: 800px;
+}
+
+.cdk-overlay-pane {
+  min-width: none;
+  width: 400px;
+} */
+
+/* .cuerpoModal {
+  padding: 16px;
+} */
+
+mat-card {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px; /* Espacio entre botones */
+  margin-top: 16px;
+}
+
+.buttonPage.ancho {
+  width: 150px; /* Ajusta el ancho de los botones */
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* mat-form-field {
+  margin-bottom: 16px;
+} */
